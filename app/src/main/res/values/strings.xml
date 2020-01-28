@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">Adaptive Learner</string>
+    <string name="title_activity_topics">Topics</string>
+    <string-array name="dropdown">
+        <item>Operating Systems</item>
+        <item>Concurrency</item>
+        <item>Processor Management</item>
+    </string-array>
+</resources>
