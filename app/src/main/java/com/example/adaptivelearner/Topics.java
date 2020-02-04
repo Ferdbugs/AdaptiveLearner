@@ -45,7 +45,6 @@ public class Topics extends AppCompatActivity {
     private ListView topics;
     private CustomAdapter customAdapter;
     private Spinner dropdownList;
-    private String path;
 
     private class CustomAdapter extends ArrayAdapter<File> {
         File[] data;

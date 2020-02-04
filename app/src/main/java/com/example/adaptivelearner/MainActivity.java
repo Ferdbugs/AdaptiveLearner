@@ -33,7 +33,15 @@ public class MainActivity extends AppCompatActivity {
         learn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent Learn = new Intent(MainActivity.this,Topics.class);
+                Intent Lib = new Intent(MainActivity.this,Topics.class);
+                startActivity(Lib);
+            }
+        });
+
+        exercises.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Learn = new Intent(MainActivity.this,Selection.class);
                 startActivity(Learn);
             }
         });
