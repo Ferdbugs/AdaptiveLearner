@@ -2,8 +2,8 @@
     <string name="app_name">Adaptive Learner</string>
     <string name="title_activity_topics">Topics</string>
     <string-array name="dropdown">
-        <item>Beginner</item>
-        <item>Intermediate</item>
-        <item>Advanced</item>
+        <item>Communication and Transmission Media</item>
+        <item>Computer Networks</item>
+        <item>Transmission and LAN Topology</item>
     </string-array>
 </resources>

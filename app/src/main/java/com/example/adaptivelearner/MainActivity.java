@@ -3,20 +3,14 @@ package com.example.adaptivelearner;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.example.adaptivelearner.R;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -41,8 +35,7 @@ public class MainActivity extends AppCompatActivity {
         exercises.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent Learn = new Intent(MainActivity.this,Selection.class);
-                startActivity(Learn);
+
             }
         });
 

@@ -15,7 +15,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".LectureSlides"></activity>
         <activity android:name=".Beginner" />
-        <activity android:name=".Selection" />
         <activity android:name=".Topics" />
         <activity android:name=".MainActivity">
             <intent-filter>
