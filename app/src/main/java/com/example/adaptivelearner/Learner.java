@@ -2,10 +2,7 @@ package com.example.adaptivelearner;
 
 public class Learner {
 
-    String currentTopic;
-    String currentDifficulty;
-    String performance;
-    String learnerState;
+    String currentTopic,currentDifficulty,performance,learnerState;
 
     public void setCurrentTopic(String currentTopic) {
         this.currentTopic = currentTopic;

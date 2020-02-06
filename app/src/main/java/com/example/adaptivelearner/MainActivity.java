@@ -14,17 +14,17 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button learn,exercises;
+    Button library,learn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        learn = findViewById(R.id.Learn);
-        exercises = findViewById(R.id.Exercises);
+        library = findViewById(R.id.Learn);
+        learn = findViewById(R.id.Exercises);
 
-        learn.setOnClickListener(new View.OnClickListener() {
+        library.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent Lib = new Intent(MainActivity.this,Topics.class);
@@ -32,10 +32,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        exercises.setOnClickListener(new View.OnClickListener() {
+        learn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                Intent Test = new Intent(MainActivity.this,Test.class);
+                startActivity(Test);
             }
         });
 
