@@ -10,13 +10,13 @@ public class QuizConstructor {
 
     public List<QuizQuestions> getEasyQuiz(){
 
-        quiz.add(new QuizQuestions("What is a Network?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Communication?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Statistics?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Oreo?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Kitkat?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Poland?","Hello","Hello","Hello","Hello"));
-        quiz.add(new QuizQuestions("What is a Russia?","Hello","Hello","Hello","Hello"));
+        quiz.add(new QuizQuestions("What is a Network?","CA","Hello","Hello","Hello","CA"));
+        quiz.add(new QuizQuestions("What is a Communication?","Hello","CA","Hello","Hello","CA"));
+        quiz.add(new QuizQuestions("What is a Statistics?","CA","Hello","Hello","Hello","CA"));
+        quiz.add(new QuizQuestions("What is a Oreo?","Hello","CA","Hello","Hello","CA"));
+        quiz.add(new QuizQuestions("What is a Kitkat?","Hello","Hello","Hello","CA","CA"));
+        quiz.add(new QuizQuestions("What is a Poland?","Hello","Hello","CA","Hello","CA"));
+        quiz.add(new QuizQuestions("What is a Russia?","Hello","Hello","CA","Hello","CA"));
 
         return  quiz;
     }

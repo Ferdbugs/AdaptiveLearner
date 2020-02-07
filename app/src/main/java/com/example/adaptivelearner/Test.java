@@ -14,6 +14,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
+import java.util.Random;
 
 public class Test extends AppCompatActivity {
 
@@ -21,7 +22,7 @@ public class Test extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
-
+    String cOption;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
@@ -37,7 +38,19 @@ public class Test extends AppCompatActivity {
         @NonNull
         @Override
         public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            holdView holder;
+
+            final holdView holder;
+            Random rand = new Random();
+            final String Correct = "Correct!";
+            final String Wrong = "Wrong!";
+            QuizQuestions Question = getItem(position);
+
+            final String cOption = Question.getCorrectOption();
+            String wOption1 = Question.getOption1();
+            String wOption2 = Question.getOption2();
+            String wOption3 = Question.getOption3();
+            String wOption4 = Question.getOption4();
+
 
             if (convertView == null) {
                 holder = new holdView();
@@ -48,21 +61,84 @@ public class Test extends AppCompatActivity {
                 holder.option3 = convertView.findViewById(R.id.option3);
                 holder.option4 = convertView.findViewById(R.id.option4);
 
+                holder.option1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(holder.option1.getText()==cOption){
+                            holder.option1.setText(Correct);
+                        }
+                        else{
+                            holder.option1.setText(Wrong);
+                        }
+                        holder.option1.setEnabled(false);
+                        holder.option2.setEnabled(false);
+                        holder.option3.setEnabled(false);
+                        holder.option4.setEnabled(false);
+                    }
+                });
+                holder.option2.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(holder.option2.getText()==cOption){
+                            holder.option2.setText(Correct);
+                        }
+                        else{
+                            holder.option2.setText(Wrong);
+                        }
+                        holder.option1.setEnabled(false);
+                        holder.option2.setEnabled(false);
+                        holder.option3.setEnabled(false);
+                        holder.option4.setEnabled(false);
+                    }
+                });
+                holder.option3.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(holder.option3.getText()==cOption){
+                            holder.option3.setText(Correct);
+                        }
+                        else{
+                            holder.option3.setText(Wrong);
+                        }
+                        holder.option1.setEnabled(false);
+                        holder.option2.setEnabled(false);
+                        holder.option3.setEnabled(false);
+                        holder.option4.setEnabled(false);
+                    }
+                });
+                holder.option4.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        if(holder.option4.getText()==cOption){
+                            holder.option4.setText(Correct);
+                        }
+                        else{
+                            holder.option4.setText(Wrong);
+                        }
+                        holder.option1.setEnabled(false);
+                        holder.option2.setEnabled(false);
+                        holder.option3.setEnabled(false);
+                        holder.option4.setEnabled(false);
+                    }
+                });
+
                 convertView.setTag(holder);
 
             } else {
                 holder = (Test.CustomAdapter.holdView) convertView.getTag();
             }
 
-            QuizQuestions Question = getItem(position);
             if(Question!=null){
                 holder.Question.setText(Question.getQuestion());
-                holder.option1.setText(Question.getCorrectOption());
-                holder.option2.setText(Question.getWrongOption1());
-                holder.option3.setText(Question.getWrongOption2());
-                holder.option4.setText(Question.getWrongOption3());
+                holder.option1.setText(wOption1);
+                holder.option2.setText(wOption2);
+                holder.option3.setText(wOption3);
+                holder.option4.setText(wOption4);
+
             }
+
             return convertView;
+
         }
 
     }
@@ -78,6 +154,7 @@ public class Test extends AppCompatActivity {
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
+
 
     }
 }

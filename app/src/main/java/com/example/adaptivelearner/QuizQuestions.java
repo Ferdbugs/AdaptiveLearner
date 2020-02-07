@@ -2,16 +2,16 @@ package com.example.adaptivelearner;
 
 public class QuizQuestions {
 
-    String question,correctOption,wrongOption1,wrongOption2,wrongOption3;
+    String question,option1,option2,option3,option4,correctOption;
 
-    public QuizQuestions(String question,String correctOption, String wrongOption1, String wrongOption2, String wrongOption3){
+    public QuizQuestions(String question, String option1, String option2, String option3, String option4, String correctOption){
 
         this.question = question;
+        this.option1 = option1;
+        this.option2 = option2;
+        this.option3 = option3;
+        this.option4 = option4;
         this.correctOption = correctOption;
-        this.wrongOption1 = wrongOption1;
-        this.wrongOption2 = wrongOption2;
-        this.wrongOption3 = wrongOption3;
-
     }
 
     public void setQuestion(String question) {
@@ -30,27 +30,35 @@ public class QuizQuestions {
         return correctOption;
     }
 
-    public void setWrongOption1(String wrongOption1) {
-        this.wrongOption1 = wrongOption1;
+    public void setOption1(String option1) {
+        this.option1 = option1;
     }
 
-    public String getWrongOption1() {
-        return wrongOption1;
+    public String getOption1() {
+        return option1;
     }
 
-    public void setWrongOption2(String wrongOption2) {
-        this.wrongOption2 = wrongOption2;
+    public void setOption2(String option2) {
+        this.option2 = option2;
     }
 
-    public String getWrongOption2() {
-        return wrongOption2;
+    public String getOption2() {
+        return option2;
     }
 
-    public void setWrongOption3(String wrongOption3) {
-        this.wrongOption3 = wrongOption3;
+    public void setOption3(String option3) {
+        this.option3 = option3;
     }
 
-    public String getWrongOption3() {
-        return wrongOption3;
+    public String getOption3() {
+        return option3;
+    }
+
+    public void setOption4(String option4) {
+        this.option4 = option4;
+    }
+
+    public String getOption4() {
+        return option4;
     }
 }
