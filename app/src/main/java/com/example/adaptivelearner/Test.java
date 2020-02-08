@@ -24,10 +24,14 @@ public class Test extends AppCompatActivity {
     private List<QuizQuestions> quiz;
     String cOption;
 
+
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
+
+        boolean[] clickedFlag;
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<QuizQuestions> objects) {
             super(context, resource, objects);
+            clickedFlag = new boolean[objects.size()];
         }
 
         private class holdView {
@@ -37,7 +41,7 @@ public class Test extends AppCompatActivity {
 
         @NonNull
         @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             final holdView holder;
             Random rand = new Random();
@@ -51,82 +55,37 @@ public class Test extends AppCompatActivity {
             String wOption3 = Question.getOption3();
             String wOption4 = Question.getOption4();
 
+            holder = new holdView();
+            convertView =  getLayoutInflater().inflate(R.layout.test_list_item, null);
+            holder.Question = convertView.findViewById(R.id.question);
+            holder.option1 = convertView.findViewById(R.id.option1);
+            holder.option2 = convertView.findViewById(R.id.option2);
+            holder.option3 = convertView.findViewById(R.id.option3);
+            holder.option4 = convertView.findViewById(R.id.option4);
 
-            if (convertView == null) {
-                holder = new holdView();
-                convertView =  getLayoutInflater().inflate(R.layout.test_list_item, null);
-                holder.Question = convertView.findViewById(R.id.question);
-                holder.option1 = convertView.findViewById(R.id.option1);
-                holder.option2 = convertView.findViewById(R.id.option2);
-                holder.option3 = convertView.findViewById(R.id.option3);
-                holder.option4 = convertView.findViewById(R.id.option4);
+            View.OnClickListener listener = new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Button button = (Button) v;
+                    if(button.getText()==cOption){
+                        button.setText(Correct);
+                    }
+                    else{
+                        button.setText(Wrong);
+                    }
+                    clickedFlag[position]=true;
+                    holder.option1.setEnabled(false);
+                    holder.option2.setEnabled(false);
+                    holder.option3.setEnabled(false);
+                    holder.option4.setEnabled(false);
+                }
+            };
 
-                holder.option1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(holder.option1.getText()==cOption){
-                            holder.option1.setText(Correct);
-                        }
-                        else{
-                            holder.option1.setText(Wrong);
-                        }
-                        holder.option1.setEnabled(false);
-                        holder.option2.setEnabled(false);
-                        holder.option3.setEnabled(false);
-                        holder.option4.setEnabled(false);
-                    }
-                });
-                holder.option2.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(holder.option2.getText()==cOption){
-                            holder.option2.setText(Correct);
-                        }
-                        else{
-                            holder.option2.setText(Wrong);
-                        }
-                        holder.option1.setEnabled(false);
-                        holder.option2.setEnabled(false);
-                        holder.option3.setEnabled(false);
-                        holder.option4.setEnabled(false);
-                    }
-                });
-                holder.option3.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(holder.option3.getText()==cOption){
-                            holder.option3.setText(Correct);
-                        }
-                        else{
-                            holder.option3.setText(Wrong);
-                        }
-                        holder.option1.setEnabled(false);
-                        holder.option2.setEnabled(false);
-                        holder.option3.setEnabled(false);
-                        holder.option4.setEnabled(false);
-                    }
-                });
-                holder.option4.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        if(holder.option4.getText()==cOption){
-                            holder.option4.setText(Correct);
-                        }
-                        else{
-                            holder.option4.setText(Wrong);
-                        }
-                        holder.option1.setEnabled(false);
-                        holder.option2.setEnabled(false);
-                        holder.option3.setEnabled(false);
-                        holder.option4.setEnabled(false);
-                    }
-                });
+            holder.option1.setOnClickListener(listener);
+            holder.option2.setOnClickListener(listener);
+            holder.option3.setOnClickListener(listener);
+            holder.option4.setOnClickListener(listener);
 
-                convertView.setTag(holder);
-
-            } else {
-                holder = (Test.CustomAdapter.holdView) convertView.getTag();
-            }
 
             if(Question!=null){
                 holder.Question.setText(Question.getQuestion());
@@ -137,6 +96,12 @@ public class Test extends AppCompatActivity {
 
             }
 
+            if(clickedFlag[position]){
+                holder.option1.setEnabled(false);
+                holder.option2.setEnabled(false);
+                holder.option3.setEnabled(false);
+                holder.option4.setEnabled(false);
+            }
             return convertView;
 
         }
@@ -150,7 +115,7 @@ public class Test extends AppCompatActivity {
 
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
-        quiz = quizConstructor.getEasyQuiz();
+        quiz = quizConstructor.getCommunicationEasyQuiz();
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
