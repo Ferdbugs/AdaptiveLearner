@@ -56,4 +56,20 @@ public class QuizConstructor {
         return  quiz;
     }
 
+    public List<QuizQuestions> getCommunicationEvaluateQuiz(){
+
+        quiz.add(new QuizQuestions("Data ___ occurs between a transmitter & receiver ","correction","transmission","splitting","sorting","transmission"));
+        quiz.add(new QuizQuestions("Unguided media is also known as ____ media.","wired","wireless","fast","reliable","wireless"));
+        quiz.add(new QuizQuestions("Unguided media can propagate through ?","Air","Vacuum","Seawater","All of the above","All of the above"));
+        quiz.add(new QuizQuestions("Signals are only transmitted in one direction:","Half Duplex","Simplex","Full Duplex","None","Simplex"));
+        quiz.add(new QuizQuestions(" ___ is the physical propagation of the signal along a suitable medium.","Signaling","Transmitting","Crosstalk","Wi-FI","Signaling"));
+        quiz.add(new QuizQuestions("Data are propagated from one point to another by means of what signals?","analog","electromagnetic","digital","All of the above","All of the above"));
+        quiz.add(new QuizQuestions("Analog signals require ___ for long distances.","modems","hubs","repeaters","decoders","repeaters"));
+        quiz.add(new QuizQuestions("Twisted Pair cable needs a repeater for every:","1 KM","2-3 KM","9-10 KM","5 KM","2-3 KM"));
+        quiz.add(new QuizQuestions("Unsuitable for very high-speed data transmission?","Twisted Pair","Optical Fibre","Both","None","Twisted Pair"));
+        quiz.add(new QuizQuestions("Relatively complex to configure and install.","Optical Fibre","Coaxial Cable","Twisted Pair","All of the above","Optical Fibre"));
+
+        return  quiz;
+    }
+
 }

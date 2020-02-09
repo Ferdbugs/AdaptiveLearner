@@ -115,7 +115,7 @@ public class Test extends AppCompatActivity {
 
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
-        quiz = quizConstructor.getCommunicationMediumQuiz();
+        quiz = quizConstructor.getCommunicationEvaluateQuiz();
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
