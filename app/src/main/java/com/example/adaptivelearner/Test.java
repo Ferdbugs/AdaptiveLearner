@@ -22,8 +22,6 @@ public class Test extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
-    String cOption;
-
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
@@ -44,7 +42,6 @@ public class Test extends AppCompatActivity {
         public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             final holdView holder;
-            Random rand = new Random();
             final String Correct = "Correct!";
             final String Wrong = "Wrong!";
             QuizQuestions Question = getItem(position);
@@ -115,7 +112,10 @@ public class Test extends AppCompatActivity {
 
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
-        quiz = quizConstructor.getCommunicationEvaluateQuiz();
+        String Topic = getIntent().getStringExtra("Topic");
+        if (Topic != null && Topic.equals("CommunicationAndTransmission")) {
+            quiz = quizConstructor.getCommunicationEvaluateQuiz();
+        }
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
