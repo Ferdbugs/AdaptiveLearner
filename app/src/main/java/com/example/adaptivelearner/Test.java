@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.lang.reflect.Array;
 import java.util.List;
 import java.util.Random;
 
@@ -22,14 +24,18 @@ public class Test extends AppCompatActivity {
     private CustomAdapter customAdapter;
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
+    private String topic;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
         boolean[] clickedFlag;
+        private String[] Answer;
+        int counter;
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<QuizQuestions> objects) {
             super(context, resource, objects);
             clickedFlag = new boolean[objects.size()];
+            Answer = new String[objects.size()];
         }
 
         private class holdView {
@@ -44,6 +50,7 @@ public class Test extends AppCompatActivity {
             final holdView holder;
             final String Correct = "Correct!";
             final String Wrong = "Wrong!";
+
             QuizQuestions Question = getItem(position);
 
             final String cOption = Question.getCorrectOption();
@@ -66,15 +73,24 @@ public class Test extends AppCompatActivity {
                     Button button = (Button) v;
                     if(button.getText()==cOption){
                         button.setText(Correct);
+                        Answer[position]= "Correct";
                     }
                     else{
                         button.setText(Wrong);
+                        Answer[position]= "Wrong";
                     }
                     clickedFlag[position]=true;
                     holder.option1.setEnabled(false);
                     holder.option2.setEnabled(false);
                     holder.option3.setEnabled(false);
                     holder.option4.setEnabled(false);
+                    counter++;
+                    if(counter==Answer.length){
+                        Intent Evaluate = new Intent(Test.this,Evaluation.class);
+                        Evaluate.putExtra("Answers", Answer);
+                        startActivity(Evaluate);
+                    }
+
                 }
             };
 
@@ -112,14 +128,13 @@ public class Test extends AppCompatActivity {
 
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
-        String Topic = getIntent().getStringExtra("Topic");
-        if (Topic != null && Topic.equals("CommunicationAndTransmission")) {
+        topic = getIntent().getStringExtra("Topic");
+        if (topic != null && topic.equals("CommunicationAndTransmission")) {
             quiz = quizConstructor.getCommunicationEvaluateQuiz();
         }
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
-
 
     }
 }

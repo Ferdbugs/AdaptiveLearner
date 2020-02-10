@@ -126,7 +126,6 @@ public class Topics extends AppCompatActivity {
             });
         }
 
-
     }
 
 }
