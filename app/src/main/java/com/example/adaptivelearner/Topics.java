@@ -4,43 +4,28 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.content.pm.ResolveInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.CompoundButton;
 import android.widget.ListView;
 import android.widget.Spinner;
-import android.widget.Switch;
 import android.widget.TextView;
 
 
-import com.example.adaptivelearner.R;
-
 import java.io.File;
-import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.List;
-
-import static java.security.AccessController.getContext;
 
 public class Topics extends AppCompatActivity {
 
     private ListView topics;
     private CustomAdapter customAdapter;
     private Spinner dropdownList;
-    private String path;
 
     private class CustomAdapter extends ArrayAdapter<File> {
         File[] data;
@@ -88,7 +73,7 @@ public class Topics extends AppCompatActivity {
         dropdownList.setAdapter(arrayAdapter);
 
         File topicDir = new File(
-                Environment.getExternalStorageDirectory().getPath() + "/Adaptive Learner Materials/" + dropdownList.getSelectedItem().toString() + "/");
+                getExternalFilesDir(null)+"/Adaptive Learner Materials/" + dropdownList.getSelectedItem().toString() + "/");
         File list[] = topicDir.listFiles();
         if(list!=null){
             customAdapter = new CustomAdapter(this, android.R.layout.simple_list_item_1, list);
@@ -106,7 +91,7 @@ public class Topics extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
                 File topicDir = new File(
-                        Environment.getExternalStorageDirectory().getPath() + "/Adaptive Learner Materials/" + dropdownList.getSelectedItem().toString() + "/");
+                        getExternalFilesDir(null) + "/Adaptive Learner Materials/" + dropdownList.getSelectedItem().toString() + "/");
                 File list[] = topicDir.listFiles();
                 if(list!=null){
                     customAdapter = new CustomAdapter(Topics.this, android.R.layout.simple_list_item_1, list);
@@ -140,7 +125,6 @@ public class Topics extends AppCompatActivity {
                 }
             });
         }
-
 
     }
 

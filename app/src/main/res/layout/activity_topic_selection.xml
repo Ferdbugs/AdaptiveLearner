@@ -4,28 +4,31 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Topics">
+    tools:context=".TopicSelection">
 
-    <ListView
-        android:id="@+id/topicList"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="80dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.428"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <Spinner
-        android:id="@+id/dropdownTopic"
+    <TextView
+        android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="12sp"
-        app:layout_constraintBottom_toTopOf="@+id/topicList"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="50dp"
+        android:layout_marginBottom="510dp"
+        android:text="Topic Selection"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/CommsAndTransmission"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        android:text="Communication and Transmission Media"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
