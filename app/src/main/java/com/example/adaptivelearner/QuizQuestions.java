@@ -2,9 +2,9 @@ package com.example.adaptivelearner;
 
 public class QuizQuestions {
 
-    String question,option1,option2,option3,option4,correctOption;
+    String question,option1,option2,option3,option4,correctOption,difficulty;
 
-    public QuizQuestions(String question, String option1, String option2, String option3, String option4, String correctOption){
+    public QuizQuestions(String question, String option1, String option2, String option3, String option4, String correctOption, String difficulty){
 
         this.question = question;
         this.option1 = option1;
@@ -12,6 +12,7 @@ public class QuizQuestions {
         this.option3 = option3;
         this.option4 = option4;
         this.correctOption = correctOption;
+        this.difficulty = difficulty;
     }
 
     public void setQuestion(String question) {

@@ -10,7 +10,7 @@ import android.widget.Button;
 public class TopicSelection extends AppCompatActivity {
 
     Button Communication;
-    String ComAndTrans= "CommunicationAndTransmission";
+    String ComAndTrans= "Communication And Transmission";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

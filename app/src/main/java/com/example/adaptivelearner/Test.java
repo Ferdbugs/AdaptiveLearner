@@ -25,6 +25,7 @@ public class Test extends AppCompatActivity {
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
     private String topic;
+    private String difficulty;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
@@ -51,13 +52,14 @@ public class Test extends AppCompatActivity {
             final String Correct = "Correct!";
             final String Wrong = "Wrong!";
 
-            QuizQuestions Question = getItem(position);
+            final QuizQuestions Question = getItem(position);
 
             final String cOption = Question.getCorrectOption();
             String wOption1 = Question.getOption1();
             String wOption2 = Question.getOption2();
             String wOption3 = Question.getOption3();
             String wOption4 = Question.getOption4();
+            final String difficulty = Question.difficulty;
 
             holder = new holdView();
             convertView =  getLayoutInflater().inflate(R.layout.test_list_item, null);
@@ -71,6 +73,7 @@ public class Test extends AppCompatActivity {
                 @Override
                 public void onClick(View v) {
                     Button button = (Button) v;
+
                     if(button.getText()==cOption){
                         button.setText(Correct);
                         Answer[position]= "Correct";
@@ -88,6 +91,8 @@ public class Test extends AppCompatActivity {
                     if(counter==Answer.length){
                         Intent Evaluate = new Intent(Test.this,Evaluation.class);
                         Evaluate.putExtra("Answers", Answer);
+                        Evaluate.putExtra("Topic",topic);
+                        Evaluate.putExtra("Difficulty",difficulty);
                         startActivity(Evaluate);
                     }
 
@@ -129,7 +134,7 @@ public class Test extends AppCompatActivity {
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
         topic = getIntent().getStringExtra("Topic");
-        if (topic != null && topic.equals("CommunicationAndTransmission")) {
+        if (topic != null && topic.equals("Communication And Transmission")) {
             quiz = quizConstructor.getCommunicationEvaluateQuiz();
         }
 
