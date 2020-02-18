@@ -76,6 +76,7 @@ public class Evaluation extends AppCompatActivity {
                 Material.putExtra("evalDifficulty",testDifficulty);
                 Material.putExtra("evalTopic",topic);
                 Material.putExtra("evalPerformance",performance);
+                startActivity(Material);
             }
         });
 
