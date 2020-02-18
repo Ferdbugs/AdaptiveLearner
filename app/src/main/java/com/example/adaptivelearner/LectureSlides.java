@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -34,13 +35,13 @@ public class LectureSlides extends AppCompatActivity {
 
     void connectServer() {
 
-        String postUrl = "http://192.168.43.99:5000/";
+        String postUrl = "http://10.163.0.209:5000/";
+        RequestBody requestBody = new MultipartBody.Builder()
+                .setType(MultipartBody.FORM)
+                .addFormDataPart("", performance)
+                .build();
 
-        String postBodyText = "Hello";
-        MediaType mediaType = MediaType.parse("text/plain; charset=utf-8");
-        RequestBody postBody = RequestBody.create(mediaType, postBodyText);
-
-        postRequest(postUrl, postBody);
+        postRequest(postUrl, requestBody);
     }
 
     void postRequest(String postUrl, RequestBody postBody) {
@@ -73,7 +74,11 @@ public class LectureSlides extends AppCompatActivity {
                 runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        Log.d("CONNECTION", "FAILED!");
+                        try {
+                            Log.d("CONNECTION", response.body().string());
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
                     }
                 });
             }
