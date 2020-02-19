@@ -35,10 +35,11 @@ public class LectureSlides extends AppCompatActivity {
 
     void connectServer() {
 
-        String postUrl = "http://10.163.0.209:5000/";
+        String postUrl = "http://172.17.2.186:5000/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
-                .addFormDataPart("", performance)
+                .addFormDataPart("performance", performance)
+                .addFormDataPart("difficulty", difficulty)
                 .build();
 
         postRequest(postUrl, requestBody);

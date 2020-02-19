@@ -33,7 +33,7 @@ public class Evaluation extends AppCompatActivity {
 
         result = getIntent().getStringArrayExtra("Answers");
         topic = getIntent().getStringExtra("Topic");
-        testDifficulty = "(" + getIntent().getStringExtra("Difficulty") + ")";
+        testDifficulty = getIntent().getStringExtra("Difficulty");
 
         title.setText(topic);
         difficulty.setText(testDifficulty);

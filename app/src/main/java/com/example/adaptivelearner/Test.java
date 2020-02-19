@@ -25,7 +25,6 @@ public class Test extends AppCompatActivity {
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
     private String topic;
-    private String difficulty;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
