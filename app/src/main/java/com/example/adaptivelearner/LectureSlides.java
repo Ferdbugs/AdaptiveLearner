@@ -20,26 +20,29 @@ import java.io.IOException;
 
 public class LectureSlides extends AppCompatActivity {
 
-    String difficulty, topic, performance;
+    String difficulty, topic, performance,learnerState;
+    public Learner learner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_lecture_slides);
 
-        topic = getIntent().getStringExtra("evalTopic");
-        difficulty = getIntent().getStringExtra("evalDifficulty");
-        performance = getIntent().getStringExtra("evalPerformance");
+        learner = Learner.get();
+        topic = learner.getCurrentTopic();
+        difficulty = learner.getCurrentDifficulty();
+        performance = learner.getPerformance();
+        learnerState = learner.getLearnerState();
         connectServer();
     }
 
     void connectServer() {
 
-        String postUrl = "http://172.17.2.186:5000/";
+        String postUrl = "http://10.163.14.154:5000/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)
-                .addFormDataPart("difficulty", difficulty)
+                .addFormDataPart("learnerState", learnerState)
                 .build();
 
         postRequest(postUrl, requestBody);

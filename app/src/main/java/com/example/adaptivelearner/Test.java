@@ -31,6 +31,8 @@ public class Test extends AppCompatActivity {
         boolean[] clickedFlag;
         private String[] Answer;
         int counter;
+        public Learner learner;
+
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<QuizQuestions> objects) {
             super(context, resource, objects);
@@ -88,10 +90,11 @@ public class Test extends AppCompatActivity {
                     holder.option4.setEnabled(false);
                     counter++;
                     if(counter==Answer.length){
+                        learner = Learner.get();
                         Intent Evaluate = new Intent(Test.this,Evaluation.class);
                         Evaluate.putExtra("Answers", Answer);
-                        Evaluate.putExtra("Topic",topic);
-                        Evaluate.putExtra("Difficulty",difficulty);
+                        learner.setCurrentDifficulty(difficulty);
+                        learner.setCurrentTopic(topic);
                         startActivity(Evaluate);
                     }
 
