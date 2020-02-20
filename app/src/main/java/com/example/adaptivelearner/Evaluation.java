@@ -26,7 +26,7 @@ public class Evaluation extends AppCompatActivity {
         learner = Learner.get();
         score = findViewById(R.id.Score);
         contn = findViewById(R.id.Continue);
-        title = findViewById(R.id.title);
+        title = findViewById(R.id.evaluationTitle);
         difficulty = findViewById(R.id.Difficulty);
 
 
