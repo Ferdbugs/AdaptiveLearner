@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#27233A"
     tools:context=".TopicSelection">
 
     <TextView
@@ -16,6 +17,7 @@
         android:layout_marginBottom="510dp"
         android:text="Topic Selection"
         android:textSize="32sp"
+        android:textColor="#DCC48E"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +28,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="100dp"
+        android:background="#EAEFD3"
+        android:shadowColor="#EAEFD3"
         android:text="Communication and Transmission Media"
+        android:textColor="#27233A"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/title" />

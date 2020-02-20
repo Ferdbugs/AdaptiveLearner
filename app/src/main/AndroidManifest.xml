@@ -15,12 +15,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Evaluation"></activity>
-        <activity android:name=".TopicSelection" />
-        <activity android:name=".Test" />
-        <activity android:name=".LectureSlides" />
-        <activity android:name=".Topics" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Evaluation" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".TopicSelection" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Test" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".LectureSlides" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".Topics" android:theme="@style/AppTheme.NoActionBar"/>
+        <activity android:name=".MainActivity" android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

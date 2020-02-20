@@ -16,6 +16,7 @@
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
         app:layout_constraintEnd_toEndOf="parent"
+        android:textColor="#DCC48E"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -25,6 +26,7 @@
         android:layout_height="19dp"
         android:layout_marginStart="10dp"
         android:text="TextView"
+        android:textColor="#DCC48E"
         app:layout_constraintBottom_toBottomOf="@+id/topic"
         app:layout_constraintStart_toStartOf="@+id/topic"
         app:layout_constraintTop_toTopOf="parent" />
