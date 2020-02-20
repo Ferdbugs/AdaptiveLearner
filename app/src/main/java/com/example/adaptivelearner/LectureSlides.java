@@ -20,8 +20,9 @@ import java.io.IOException;
 
 public class LectureSlides extends AppCompatActivity {
 
-    String difficulty, topic, performance,learnerState;
+    String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert;
     public Learner learner;
+    TextView recommended;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +30,29 @@ public class LectureSlides extends AppCompatActivity {
         setContentView(R.layout.activity_lecture_slides);
 
         learner = Learner.get();
+        recommended = findViewById(R.id.recommendation);
         topic = learner.getCurrentTopic();
         difficulty = learner.getCurrentDifficulty();
         performance = learner.getPerformance();
         learnerState = learner.getLearnerState();
+        beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
+        intermediate= "Your score is average, intermediate content is recommended for you.";
+        expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
+
         connectServer();
+
+    }
+
+    void setContentComplexity(){
+        if(contentComplexity.equals("Low")){
+            recommended.setText(beginner);
+        }
+        else if(contentComplexity.equals("Medium")){
+            recommended.setText(intermediate);
+        }
+        else{
+            recommended.setText(expert);
+        }
     }
 
     void connectServer() {
@@ -79,10 +98,12 @@ public class LectureSlides extends AppCompatActivity {
                     @Override
                     public void run() {
                         try {
-                            Log.d("CONNECTION", response.body().string());
+                            contentComplexity = response.body().string();
+                            setContentComplexity();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
+
                     }
                 });
             }

@@ -13,8 +13,8 @@ public class Evaluation extends AppCompatActivity {
 
     String[] result;
     int correct;
-    TextView score,recommendation,title,difficulty;
-    String beginner,intermediate,expert,topic,testDifficulty;
+    TextView score,title,difficulty;
+    String topic,testDifficulty;
     Button contn;
     public Learner learner;
 
@@ -25,14 +25,10 @@ public class Evaluation extends AppCompatActivity {
 
         learner = Learner.get();
         score = findViewById(R.id.Score);
-        recommendation = findViewById(R.id.Recommendation);
         contn = findViewById(R.id.Continue);
         title = findViewById(R.id.title);
         difficulty = findViewById(R.id.Difficulty);
 
-        beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
-        intermediate= "Your score is average, intermediate content is recommended for you.";
-        expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
 
         result = getIntent().getStringArrayExtra("Answers");
         topic = learner.getCurrentTopic();
@@ -65,23 +61,18 @@ public class Evaluation extends AppCompatActivity {
         }
 
         if(correct<4){
-            recommendation.setText(beginner);
             learner.setPerformance("Poor");
         }
         else if(correct<6){
-            recommendation.setText(beginner);
             learner.setPerformance("Moderate");
         }
         else if(correct<7){
-            recommendation.setText(intermediate);
             learner.setPerformance("Good");
         }
         else if(correct<9){
-            recommendation.setText(intermediate);
-            learner.setPerformance("Very Good");
+            learner.setPerformance("VeryGood");
         }
         else{
-            recommendation.setText(expert);
             learner.setPerformance("Excellent");
         }
 
