@@ -25,13 +25,16 @@ public class Test extends AppCompatActivity {
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
     private String topic;
-    private String difficulty;
+    private Learner learner;
+    private TextView title;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
         boolean[] clickedFlag;
         private String[] Answer;
         int counter;
+        public Learner learner;
+
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<QuizQuestions> objects) {
             super(context, resource, objects);
@@ -89,10 +92,11 @@ public class Test extends AppCompatActivity {
                     holder.option4.setEnabled(false);
                     counter++;
                     if(counter==Answer.length){
+                        learner = Learner.get();
                         Intent Evaluate = new Intent(Test.this,Evaluation.class);
                         Evaluate.putExtra("Answers", Answer);
-                        Evaluate.putExtra("Topic",topic);
-                        Evaluate.putExtra("Difficulty",difficulty);
+                        learner.setCurrentDifficulty(difficulty);
+                        learner.setCurrentTopic(topic);
                         startActivity(Evaluate);
                     }
 
@@ -131,12 +135,34 @@ public class Test extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
+        learner = Learner.get();
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
-        topic = getIntent().getStringExtra("Topic");
-        if (topic != null && topic.equals("Communication And Transmission")) {
-            quiz = quizConstructor.getCommunicationEvaluateQuiz();
+        topic = learner.getCurrentTopic();
+        title = findViewById(R.id.testTitle);
+
+        title.setText(learner.getCurrentTopic());
+
+        if(topic!=null) {
+            if (topic.equals("Communication And Transmission Media")) {
+                if(learner.getCurrentDifficulty()==null){
+                    quiz = quizConstructor.getCommunicationEvaluateQuiz();
+                }
+                else if(learner.getCurrentDifficulty().equals("Easy")){
+
+                    quiz = quizConstructor.getCommunicationEasyQuiz();
+                }
+                else if(learner.getCurrentDifficulty().equals("Medium")){
+
+                    quiz = quizConstructor.getCommunicationMediumQuiz();
+                }
+                else
+                {
+                    quiz = quizConstructor.getCommunicationHardQuiz();
+                }
+            }
         }
+
 
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);

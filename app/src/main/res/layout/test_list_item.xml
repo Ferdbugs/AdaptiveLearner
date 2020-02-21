@@ -15,6 +15,7 @@
         android:paddingStart="?android:attr/listPreferredItemPaddingStart"
         android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
+        android:textColor="#DCC48E"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -26,7 +27,9 @@
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
         android:layout_marginTop="65dp"
+        android:background="@drawable/button_selector"
         android:text="Button"
+        android:textColor="#27233A"
         app:layout_constraintStart_toStartOf="@+id/topic"
         app:layout_constraintTop_toTopOf="@+id/topic" />
 
@@ -36,7 +39,9 @@
         android:layout_height="40dp"
         android:layout_marginTop="65dp"
         android:layout_marginEnd="30dp"
+        android:background="@drawable/button_selector"
         android:text="Button"
+        android:textColor="#27233A"
         app:layout_constraintEnd_toEndOf="@+id/topic"
         app:layout_constraintTop_toTopOf="@+id/topic" />
 
@@ -45,7 +50,9 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginStart="30dp"
+        android:background="@drawable/button_selector"
         android:text="Button"
+        android:textColor="#27233A"
         app:layout_constraintBottom_toBottomOf="@+id/topic"
         app:layout_constraintStart_toStartOf="@+id/topic"
         app:layout_constraintTop_toBottomOf="@+id/option1" />
@@ -55,7 +62,9 @@
         android:layout_width="wrap_content"
         android:layout_height="40dp"
         android:layout_marginEnd="30dp"
+        android:background="@drawable/button_selector"
         android:text="Button"
+        android:textColor="#27233A"
         app:layout_constraintBottom_toBottomOf="@+id/topic"
         app:layout_constraintEnd_toEndOf="@+id/topic"
         app:layout_constraintTop_toBottomOf="@+id/option2" />
@@ -66,6 +75,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
         android:text="TextView"
+        android:gravity="center"
+        android:textColor="#DCC48E"
         app:layout_constraintEnd_toEndOf="@+id/topic"
         app:layout_constraintStart_toStartOf="@+id/topic"
         app:layout_constraintTop_toTopOf="@+id/topic" />

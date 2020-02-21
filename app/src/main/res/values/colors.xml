@@ -3,4 +3,10 @@
     <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
+    <color name="DarkSlateBlue">#483D8B</color>
+    <color name="DarkSlateGray">#2F4F4F</color>
+    <color name="LightSlateGray">#778899</color>
+    <color name="MediumSlateBlue">#7B68EE</color>
+    <color name="SlateGray">#708090</color>
+    <color name="Independence">#505168</color>
 </resources>
