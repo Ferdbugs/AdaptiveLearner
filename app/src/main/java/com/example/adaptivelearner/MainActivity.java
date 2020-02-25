@@ -18,7 +18,8 @@ import java.io.InputStream;
 public class MainActivity extends AppCompatActivity {
 
     Button library,learn,pickup;
-    Learner learner;
+    Learner learner,prevLearner;
+    String firstTime;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +29,26 @@ public class MainActivity extends AppCompatActivity {
         library = findViewById(R.id.Learn);
         learn = findViewById(R.id.Exercises);
         pickup = findViewById(R.id.PickUp);
-        learner = new Learner();
+        learner = Learner.get();
+        firstTime = "Seems like this is your first time, Welcome!";
 
         pickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                learner = UserDB.getInstance(getApplicationContext()).getLatest();
-                pickup.setText(learner.getCurrentTopic());
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLatest();
+                if(prevLearner!=null){
+                    learner.setCurrentTopic(prevLearner.getCurrentTopic());
+                    learner.setLearnerState(prevLearner.getLearnerState());
+                    learner.setPerformance(prevLearner.getPerformance());
+                    learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
+
+                    Intent Recommended = new Intent(MainActivity.this,LectureSlides.class);
+                    startActivity(Recommended);
+                }
+                else{
+                    pickup.setText(firstTime);
+                    pickup.setEnabled(false);
+                }
             }
         });
 

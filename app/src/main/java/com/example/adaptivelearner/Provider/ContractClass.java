@@ -13,6 +13,7 @@ public class ContractClass {
     public static final Uri CONTENT_URI = BASE_URI.buildUpon().appendPath(UserTable.TABLE_NAME).build();
 
     public static class UserTable implements BaseColumns {
+
         public static final String TABLE_NAME = "user";
 
         public static final String COLUMN_ID = "_user_id";

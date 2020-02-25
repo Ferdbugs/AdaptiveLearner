@@ -18,10 +18,6 @@ public class Learner {
     private long date;
     private int id;
 
-    public void setCurrentTopic(String currentTopic) {
-        this.currentTopic = currentTopic;
-    }
-
     public void setDate(long date) {
         long trim = date % (24 * 3600 * 1000);
         this.date = date - trim;
@@ -42,6 +38,10 @@ public class Learner {
 
     public int getId() {
         return id;
+    }
+
+    public void setCurrentTopic(String currentTopic) {
+        this.currentTopic = currentTopic;
     }
 
     public String getCurrentTopic() {

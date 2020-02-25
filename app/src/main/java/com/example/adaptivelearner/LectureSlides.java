@@ -28,7 +28,7 @@ public class LectureSlides extends AppCompatActivity {
     String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert;
     public Learner learner;
     TextView recommended;
-    Button material,contn;
+    Button material,contn,homeScreen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +43,19 @@ public class LectureSlides extends AppCompatActivity {
         learnerState = learner.getLearnerState();
         material = findViewById(R.id.Material);
         contn = findViewById(R.id.ContnTest);
+        homeScreen = findViewById(R.id.homeScreen);
 
         beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
         intermediate= "Your score is average, intermediate content is recommended for you.";
         expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
+
+        homeScreen.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent Home = new Intent(LectureSlides.this,MainActivity.class);
+                startActivity(Home);
+            }
+        });
 
         contn.setOnClickListener(new View.OnClickListener() {
             @Override
