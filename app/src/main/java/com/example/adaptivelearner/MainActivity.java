@@ -4,9 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 
+
+import com.example.adaptivelearner.Provider.UserDB;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -14,7 +17,8 @@ import java.io.InputStream;
 
 public class MainActivity extends AppCompatActivity {
 
-    Button library,learn;
+    Button library,learn,pickup;
+    Learner learner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +27,16 @@ public class MainActivity extends AppCompatActivity {
 
         library = findViewById(R.id.Learn);
         learn = findViewById(R.id.Exercises);
+        pickup = findViewById(R.id.PickUp);
+        learner = new Learner();
+
+        pickup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                learner = UserDB.getInstance(getApplicationContext()).getLatest();
+                pickup.setText(learner.getCurrentTopic());
+            }
+        });
 
         library.setOnClickListener(new View.OnClickListener() {
             @Override

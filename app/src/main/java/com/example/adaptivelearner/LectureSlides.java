@@ -18,6 +18,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.adaptivelearner.Provider.UserDB;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -106,9 +108,13 @@ public class LectureSlides extends AppCompatActivity {
         }
     }
 
+    void saveUser(){
+        UserDB.getInstance(getApplicationContext()).insertLearner(learner);
+    }
+
     void connectServer() {
 
-        String postUrl = "http://10.163.15.203:5000/";
+        String postUrl = "http://10.163.19.224:5000/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)
@@ -151,6 +157,7 @@ public class LectureSlides extends AppCompatActivity {
                         try {
                             contentComplexity = response.body().string();
                             setContentComplexity();
+                            saveUser();
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
