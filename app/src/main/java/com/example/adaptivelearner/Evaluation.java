@@ -17,6 +17,7 @@ public class Evaluation extends AppCompatActivity {
     String topic,testDifficulty;
     Button contn;
     public Learner learner;
+    int finalResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +42,7 @@ public class Evaluation extends AppCompatActivity {
 
             if(result[i].equals("Correct")){
                 correct++;
+                finalResult = correct/result.length;
             }
         }
 
@@ -60,16 +62,16 @@ public class Evaluation extends AppCompatActivity {
             learner.setLearnerState("Expert");
         }
 
-        if(correct<4){
+        if(finalResult<.4){
             learner.setPerformance("Poor");
         }
-        else if(correct<6){
+        else if(correct<.6){
             learner.setPerformance("Moderate");
         }
-        else if(correct<7){
+        else if(correct<.7){
             learner.setPerformance("Good");
         }
-        else if(correct<9){
+        else if(correct<.9){
             learner.setPerformance("VeryGood");
         }
         else{

@@ -15,8 +15,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import java.lang.reflect.Array;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Test extends AppCompatActivity {
 
@@ -147,25 +149,50 @@ public class Test extends AppCompatActivity {
             if (topic.equals("Communication And Transmission Media")) {
                 if(learner.getCurrentDifficulty()==null){
                     quiz = quizConstructor.getCommunicationEvaluateQuiz();
+                    Collections.shuffle(quiz);
                 }
                 else if(learner.getCurrentDifficulty().equals("Easy")){
 
                     quiz = quizConstructor.getCommunicationEasyQuiz();
+                    Collections.shuffle(quiz);
                 }
                 else if(learner.getCurrentDifficulty().equals("Medium")){
 
                     quiz = quizConstructor.getCommunicationMediumQuiz();
+                    Collections.shuffle(quiz);
                 }
                 else
                 {
                     quiz = quizConstructor.getCommunicationHardQuiz();
+                    Collections.shuffle(quiz);
+                }
+            }
+            if (topic.equals("Computer Networks")) {
+                if(learner.getCurrentDifficulty()==null){
+                    quiz = quizConstructor.getNetworkEvaluateQuiz();
+                    Collections.shuffle(quiz);
+                }
+                else if(learner.getCurrentDifficulty().equals("Easy")){
+
+                    quiz = quizConstructor.getNetworksEasyQuiz();
+                    Collections.shuffle(quiz);
+                }
+                else if(learner.getCurrentDifficulty().equals("Medium")){
+
+                    quiz = quizConstructor.getNetworkMediumQuiz();
+                    Collections.shuffle(quiz);
+                }
+                else
+                {
+                    quiz = quizConstructor.getNetworkHardQuiz();
+                    Collections.shuffle(quiz);
                 }
             }
         }
 
-
         customAdapter = new CustomAdapter(this,android.R.layout.simple_list_item_1,quiz);
         questions.setAdapter(customAdapter);
-
     }
+
+
 }

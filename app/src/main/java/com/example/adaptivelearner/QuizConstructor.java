@@ -72,4 +72,55 @@ public class QuizConstructor {
         return  quiz;
     }
 
+    public List<QuizQuestions> getNetworksEasyQuiz(){
+
+        quiz.add(new QuizQuestions("Networking deals with ___ communicating devices.","interconnecting","updating","upgrading","the range of","interconnecting","Easy"));
+        quiz.add(new QuizQuestions("A network is a series of ___ interconnected by a communication path.","circuits","signals","nodes","devices","nodes","Easy"));
+        quiz.add(new QuizQuestions("The Internet is a worldwide ___ network","meta","lan","vpn","All of the above","meta","Easy"));
+        quiz.add(new QuizQuestions("A network is a interconnection of ____","computers","signals","A & B","None","computers","Easy"));
+        quiz.add(new QuizQuestions("Goal of computer networks:","Mobile computing","Mobile computing","Load balancing ","All of the above","All of the above","Easy"));
+        quiz.add(new QuizQuestions("Computer Networks aim for increased ____","robustness","transmission","range","All of the above","robustness","Easy"));
+        quiz.add(new QuizQuestions("Use of computer networks:","video conference","email","file transfer","All of the above","All of the above","Easy"));
+
+        return  quiz;
+    }
+
+    public List<QuizQuestions> getNetworkMediumQuiz(){
+
+        quiz.add(new QuizQuestions("Servers may have __","One Client","Less than 5","Depends on Server","Unlimited","Depends on Server","Medium"));
+        quiz.add(new QuizQuestions("In a ___ system there are no fixed clients and servers.","peer-to-peer","client/server","Both","None","peer-to-peer","Medium"));
+        quiz.add(new QuizQuestions("Example of a peer-to-peer network:","Online shopping","Youtube","Music sharing","All of the Above","Music Sharing","Medium"));
+        quiz.add(new QuizQuestions("Network spans one city:","LAN","MAN","WAN","None","MAN","Medium"));
+        quiz.add(new QuizQuestions("Inter-processor distance for Personal Area Network:","1m","3-4m","20m","7m","1m","Medium"));
+        quiz.add(new QuizQuestions("Wide Area Network can span:","Multiple cities","Multiple states","Multiple Countries","All of the above","All of the above","Medium"));
+        quiz.add(new QuizQuestions("Inter-processor distance for Metropolitan Area Network","5km","12km","10km","8km","10km","Medium"));
+
+        return  quiz;
+    }
+
+    public List<QuizQuestions> getNetworkHardQuiz(){
+
+        quiz.add(new QuizQuestions("Inter-processor distance range for Wide Area Network:","100km to 1000km","500km to 1000km","250km to 500km","50km to 100km","100km to 1000km","Hard"));
+        quiz.add(new QuizQuestions("A LAN will usually have no more than ___ connected computers.","25","50","15","10","50","Hard"));
+        quiz.add(new QuizQuestions("A network spans Toronto, Vancouver and Montreal. Which type of network is it?","LAN","WAN","PAN","MAN","WAN","Hard"));
+        quiz.add(new QuizQuestions("Network spans one city:","LAN","MAN","WAN","None","MAN","Hard"));
+        quiz.add(new QuizQuestions("Network usually spans a single room?","PAN","WAN","MAN","All of them","PAN","Hard"));
+        quiz.add(new QuizQuestions("MAN stands for?","Multiple Area Network","Main Area Network","Metropolitan Area Network","Methodical Area Network","Metropolitan Area Network","Hard"));
+        quiz.add(new QuizQuestions("Processors for internet need to be located in the same:","City","Country","Continent","Planet","Planet","Hard"));
+
+        return  quiz;
+    }
+
+    public List<QuizQuestions> getNetworkEvaluateQuiz(){
+
+        quiz.add(new QuizQuestions("Processors for internet need to be located in the same:","City","Country","Continent","Planet","Planet","Hard"));
+        quiz.add(new QuizQuestions("A LAN will usually have no more than ___ connected computers.","25","50","15","10","50","Hard"));
+        quiz.add(new QuizQuestions("Example of a peer-to-peer network:","Online shopping","Youtube","Music sharing","All of the Above","Music Sharing","Medium"));
+        quiz.add(new QuizQuestions("Network spans one city:","LAN","MAN","WAN","None","MAN","Medium"));
+        quiz.add(new QuizQuestions("Computer Networks aim for increased ____","robustness","transmission","range","All of the above","robustness","Easy"));
+        quiz.add(new QuizQuestions("Networking deals with ___ communicating devices.","interconnecting","updating","upgrading","the range of","interconnecting","Easy"));
+        quiz.add(new QuizQuestions("A network is a series of ___ interconnected by a communication path.","circuits","signals","nodes","devices","nodes","Easy"));
+
+        return  quiz;
+    }
 }
