@@ -14,6 +14,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.adaptivelearner.Provider.UserDB;
+
 import java.lang.reflect.Array;
 import java.util.Collections;
 import java.util.List;
@@ -27,7 +29,7 @@ public class Test extends AppCompatActivity {
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
     private String topic;
-    private Learner learner;
+    private Learner learner,prevLearner;
     private TextView title;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
@@ -138,6 +140,7 @@ public class Test extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         learner = Learner.get();
+        prevLearner = new Learner();
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
         topic = learner.getCurrentTopic();
@@ -147,16 +150,18 @@ public class Test extends AppCompatActivity {
 
         if(topic!=null) {
             if (topic.equals("Communication And Transmission Media")) {
-                if(learner.getCurrentDifficulty()==null){
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLatestByTopic("Communication And Transmission Media");
+                if(prevLearner.getCurrentDifficulty()==null){
+
                     quiz = quizConstructor.getCommunicationEvaluateQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Easy")){
+                else if(prevLearner.getCurrentDifficulty().equals("Easy")){
 
                     quiz = quizConstructor.getCommunicationEasyQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Medium")){
+                else if(prevLearner.getCurrentDifficulty().equals("Medium")){
 
                     quiz = quizConstructor.getCommunicationMediumQuiz();
                     Collections.shuffle(quiz);
@@ -169,6 +174,7 @@ public class Test extends AppCompatActivity {
             }
             if (topic.equals("Computer Networks")) {
                 if(learner.getCurrentDifficulty()==null){
+
                     quiz = quizConstructor.getNetworkEvaluateQuiz();
                     Collections.shuffle(quiz);
                 }

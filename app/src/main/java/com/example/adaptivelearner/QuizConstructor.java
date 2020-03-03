@@ -13,7 +13,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Data Communication deals with the ____ of signals.","Types","Transmission","Price","Colors","Transmission","Easy"));
         quiz.add(new QuizQuestions("Data communications is a subset of?","Data Science","Telecommunication","Concurrency","Networking","Telecommunication","Easy"));
         quiz.add(new QuizQuestions("Transmission media is classified as ?","guided/unguided","strong/weak","fast/slow","smooth/choppy","guided/unguided","Easy"));
-        quiz.add(new QuizQuestions("With guided media the waves are guided along a ___ path.","physical","wireless","electric","electromagnetic","CA","Easy"));
+        quiz.add(new QuizQuestions("With guided media the waves are guided along a ___ path.","physical","wireless","electric","electromagnetic","physical","Easy"));
         quiz.add(new QuizQuestions("Example of Guided Media:","Twisted pair","Antenna","Wi-FI","Radio","Twisted pair","Easy"));
         quiz.add(new QuizQuestions("Example of Unguided Media:","Coaxial Cable","Optical Fibre","Wi-Fi","Twisted Pair","Wi-Fi","Easy"));
         quiz.add(new QuizQuestions("How many device share link in point-to-point?","Four","Three","Five","Two","Two","Easy"));
@@ -78,7 +78,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("A network is a series of ___ interconnected by a communication path.","circuits","signals","nodes","devices","nodes","Easy"));
         quiz.add(new QuizQuestions("The Internet is a worldwide ___ network","meta","lan","vpn","All of the above","meta","Easy"));
         quiz.add(new QuizQuestions("A network is a interconnection of ____","computers","signals","A & B","None","computers","Easy"));
-        quiz.add(new QuizQuestions("Goal of computer networks:","Mobile computing","Mobile computing","Load balancing ","All of the above","All of the above","Easy"));
+        quiz.add(new QuizQuestions("Goal of computer networks:","Mobile computing","Communication","Load balancing ","All of the above","All of the above","Easy"));
         quiz.add(new QuizQuestions("Computer Networks aim for increased ____","robustness","transmission","range","All of the above","robustness","Easy"));
         quiz.add(new QuizQuestions("Use of computer networks:","video conference","email","file transfer","All of the above","All of the above","Easy"));
 

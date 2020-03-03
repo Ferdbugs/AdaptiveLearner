@@ -155,4 +155,40 @@ public class UserDB extends SQLiteOpenHelper {
         return learner;
     }
 
+    public Learner getLatestByTopic(String topic) {
+
+        SQLiteDatabase db = getReadableDatabase();
+        Learner learner = new Learner();
+
+        try (
+                Cursor cursor = db.query(
+                        UserTable.TABLE_NAME,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        UserTable.COLUMN_DATE + " DESC"
+                )
+        ) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                        learner.setId(cursor.getInt(cursor.getColumnIndex(UserTable.COLUMN_ID)));
+                        if(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_TOPIC)).equals(topic)){
+                            learner.setCurrentTopic(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_TOPIC)));
+                            learner.setCurrentDifficulty(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_DIFFICULTY)));
+                            learner.setPerformance(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PERFORMANCE)));
+                            learner.setLearnerState(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LEARNER_STATE)));
+                        }
+                        learner.setDate(cursor.getLong(cursor.getColumnIndex(UserTable.COLUMN_DATE)));
+                } while (cursor.moveToNext());
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return learner;
+    }
+
 }

@@ -17,7 +17,7 @@ public class Evaluation extends AppCompatActivity {
     String topic,testDifficulty;
     Button contn;
     public Learner learner;
-    int finalResult;
+    float finalResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,6 @@ public class Evaluation extends AppCompatActivity {
         title = findViewById(R.id.evaluationTitle);
         difficulty = findViewById(R.id.Difficulty);
 
-
         result = getIntent().getStringArrayExtra("Answers");
         topic = learner.getCurrentTopic();
         testDifficulty = learner.getCurrentDifficulty();
@@ -42,10 +41,10 @@ public class Evaluation extends AppCompatActivity {
 
             if(result[i].equals("Correct")){
                 correct++;
-                finalResult = correct/result.length;
             }
         }
 
+        finalResult = correct/result.length;
         String Marks = correct +"/"+ result.length;
         score.setText(Marks);
 
@@ -65,13 +64,13 @@ public class Evaluation extends AppCompatActivity {
         if(finalResult<.4){
             learner.setPerformance("Poor");
         }
-        else if(correct<.6){
+        else if(finalResult<.6){
             learner.setPerformance("Moderate");
         }
-        else if(correct<.7){
+        else if(finalResult<.7){
             learner.setPerformance("Good");
         }
-        else if(correct<.9){
+        else if(finalResult<.9){
             learner.setPerformance("VeryGood");
         }
         else{
