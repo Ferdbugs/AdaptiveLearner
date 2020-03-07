@@ -82,12 +82,27 @@ public class UserDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         db.insert(UserTable.TABLE_NAME, null, values);
-//        db.update(
-//                UserTable.TABLE_NAME,
-//                values,
-//                UserTable.COLUMN_ID + " = ?",
-//                new String[] { String.valueOf(0) }
-//        );
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void updateLearner(Learner learner) {
+        ContentValues values = new ContentValues();
+
+        values.put(UserTable.COLUMN_TOPIC, learner.getCurrentTopic());
+        values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
+        values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
+        values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
+        values.put(UserTable.COLUMN_DATE,learner.getDate());
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        db.update(
+                UserTable.TABLE_NAME,
+                values,
+                UserTable.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(0) }
+        );
         db.setTransactionSuccessful();
         db.endTransaction();
     }

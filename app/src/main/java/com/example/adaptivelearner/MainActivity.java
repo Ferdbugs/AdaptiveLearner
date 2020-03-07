@@ -36,13 +36,14 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 prevLearner = UserDB.getInstance(getApplicationContext()).getLatest();
-                if(prevLearner!=null){
-                    learner.setCurrentTopic(prevLearner.getCurrentTopic());
-                    learner.setLearnerState(prevLearner.getLearnerState());
-                    learner.setPerformance(prevLearner.getPerformance());
-                    learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
 
-                    Intent Recommended = new Intent(MainActivity.this,LectureSlides.class);
+                learner.setCurrentTopic(prevLearner.getCurrentTopic());
+                learner.setLearnerState(prevLearner.getLearnerState());
+                learner.setPerformance(prevLearner.getPerformance());
+                learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
+
+                if(learner.getCurrentTopic()!=null) {
+                    Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);
                     startActivity(Recommended);
                 }
                 else{
