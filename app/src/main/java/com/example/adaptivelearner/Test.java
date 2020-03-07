@@ -152,7 +152,7 @@ public class Test extends AppCompatActivity {
 
         if(topic!=null) {
             if (topic.equals("Communication And Transmission Media")) {
-                prevLearner = UserDB.getInstance(getApplicationContext()).getLatestByTopic("Communication And Transmission Media");
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);
                 if(prevLearner.getCurrentDifficulty()==null){
 
                     quiz = quizConstructor.getCommunicationEvaluateQuiz();
@@ -175,17 +175,18 @@ public class Test extends AppCompatActivity {
                 }
             }
             if (topic.equals("Computer Networks")) {
-                if(learner.getCurrentDifficulty()==null){
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(1);
+                if(prevLearner.getCurrentDifficulty()==null){
 
                     quiz = quizConstructor.getNetworkEvaluateQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Easy")){
+                else if(prevLearner.getCurrentDifficulty().equals("Easy")){
 
                     quiz = quizConstructor.getNetworksEasyQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Medium")){
+                else if(prevLearner.getCurrentDifficulty().equals("Medium")){
 
                     quiz = quizConstructor.getNetworkMediumQuiz();
                     Collections.shuffle(quiz);

@@ -34,12 +34,6 @@ public class UserDB extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
-
-
-
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_SQL = String.format(
@@ -80,7 +74,7 @@ public class UserDB extends SQLiteOpenHelper {
         values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
         values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
         values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
-        values.put(UserTable.COLUMN_COMPLETED, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getCompleted());
         values.put(UserTable.COLUMN_DATE,learner.getDate());
 
         SQLiteDatabase db = getWritableDatabase();
@@ -97,7 +91,7 @@ public class UserDB extends SQLiteOpenHelper {
         values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
         values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
         values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
-        values.put(UserTable.COLUMN_COMPLETED, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getCompleted());
         values.put(UserTable.COLUMN_DATE,learner.getDate());
 
         SQLiteDatabase db = getWritableDatabase();
@@ -207,6 +201,7 @@ public class UserDB extends SQLiteOpenHelper {
                             learner.setCurrentDifficulty(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_DIFFICULTY)));
                             learner.setPerformance(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PERFORMANCE)));
                             learner.setLearnerState(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LEARNER_STATE)));
+                            learner.setCompleted(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_COMPLETED)));
                         }
                         learner.setDate(cursor.getLong(cursor.getColumnIndex(UserTable.COLUMN_DATE)));
                 } while (cursor.moveToNext());

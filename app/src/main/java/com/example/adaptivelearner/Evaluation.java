@@ -75,6 +75,15 @@ public class Evaluation extends AppCompatActivity {
         }
         else{
             learner.setPerformance("Excellent");
+            if(testDifficulty.equals("Easy")) {
+                learner.setCompleted("A");
+            }
+            if (testDifficulty.equals("Medium")){
+                learner.setCompleted("B");
+            }
+            if(testDifficulty.equals("Hard")){
+                learner.setCompleted("C");
+            }
         }
 
         contn.setOnClickListener(new View.OnClickListener() {

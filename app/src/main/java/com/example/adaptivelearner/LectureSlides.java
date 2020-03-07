@@ -27,7 +27,7 @@ public class LectureSlides extends AppCompatActivity {
 
     String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert;
     public Learner learner;
-    TextView recommended;
+    TextView recommended,subject;
     Button material,contn,homeScreen;
 
     @Override
@@ -41,13 +41,17 @@ public class LectureSlides extends AppCompatActivity {
         difficulty = learner.getCurrentDifficulty();
         performance = learner.getPerformance();
         learnerState = learner.getLearnerState();
+
         material = findViewById(R.id.Material);
         contn = findViewById(R.id.ContnTest);
         homeScreen = findViewById(R.id.homeScreen);
+        subject = findViewById(R.id.subject);
 
         beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
         intermediate= "Your score is average, intermediate content is recommended for you.";
         expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
+
+        subject.setText(topic);
 
         homeScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,7 +127,7 @@ public class LectureSlides extends AppCompatActivity {
 
     void connectServer() {
 
-        String postUrl = "http://25.49.237.154:5000/";
+        String postUrl = "http://172.17.10.8:5000/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)
