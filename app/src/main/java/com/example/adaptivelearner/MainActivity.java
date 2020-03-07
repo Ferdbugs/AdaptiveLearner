@@ -32,15 +32,20 @@ public class MainActivity extends AppCompatActivity {
         learner = Learner.get();
         firstTime = "Seems like this is your first time, Welcome!";
 
+        prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);
+        if(prevLearner!=null){
+            learner.setCurrentTopic(prevLearner.getCurrentTopic());
+            learner.setLearnerState(prevLearner.getLearnerState());
+            learner.setPerformance(prevLearner.getPerformance());
+            learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
+        }
+        else {
+            UserDB.getInstance(getApplicationContext()).insertLearner(learner);
+        }
+
         pickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prevLearner = UserDB.getInstance(getApplicationContext()).getLatest();
-
-                learner.setCurrentTopic(prevLearner.getCurrentTopic());
-                learner.setLearnerState(prevLearner.getLearnerState());
-                learner.setPerformance(prevLearner.getPerformance());
-                learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
 
                 if(learner.getCurrentTopic()!=null) {
                     Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);

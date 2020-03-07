@@ -118,12 +118,12 @@ public class LectureSlides extends AppCompatActivity {
     }
 
     void saveUser(){
-        UserDB.getInstance(getApplicationContext()).insertLearner(learner);
+        UserDB.getInstance(getApplicationContext()).updateLearner(learner);
     }
 
     void connectServer() {
 
-        String postUrl = "http://172.17.10.8:5000/";
+        String postUrl = "http://25.49.237.154:5000/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)

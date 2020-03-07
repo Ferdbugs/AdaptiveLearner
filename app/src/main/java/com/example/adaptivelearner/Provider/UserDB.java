@@ -49,6 +49,7 @@ public class UserDB extends SQLiteOpenHelper {
                         "%s TEXT," +
                         "%s TEXT," +
                         "%s TEXT," +
+                        "%s TEXT," +
                         "%s FLOAT)",
                 UserTable.TABLE_NAME,
                 UserTable.COLUMN_ID,
@@ -56,6 +57,7 @@ public class UserDB extends SQLiteOpenHelper {
                 UserTable.COLUMN_DIFFICULTY,
                 UserTable.COLUMN_PERFORMANCE,
                 UserTable.COLUMN_LEARNER_STATE,
+                UserTable.COLUMN_COMPLETED,
                 UserTable.COLUMN_DATE
 
         );
@@ -73,10 +75,12 @@ public class UserDB extends SQLiteOpenHelper {
     public void insertLearner(Learner learner) {
         ContentValues values = new ContentValues();
 
+        values.put(UserTable.COLUMN_ID, 0);
         values.put(UserTable.COLUMN_TOPIC, learner.getCurrentTopic());
         values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
         values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
         values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getLearnerState());
         values.put(UserTable.COLUMN_DATE,learner.getDate());
 
         SQLiteDatabase db = getWritableDatabase();
@@ -93,6 +97,7 @@ public class UserDB extends SQLiteOpenHelper {
         values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
         values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
         values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getLearnerState());
         values.put(UserTable.COLUMN_DATE,learner.getDate());
 
         SQLiteDatabase db = getWritableDatabase();
@@ -167,6 +172,7 @@ public class UserDB extends SQLiteOpenHelper {
                 learner.setCurrentDifficulty(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_DIFFICULTY)));
                 learner.setPerformance(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PERFORMANCE)));
                 learner.setLearnerState(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LEARNER_STATE)));
+                learner.setCompleted(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_COMPLETED)));
                 learner.setDate(cursor.getLong(cursor.getColumnIndex(UserTable.COLUMN_DATE)));
             }
         } catch (Exception e) {
