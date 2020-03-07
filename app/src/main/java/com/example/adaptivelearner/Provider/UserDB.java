@@ -82,6 +82,12 @@ public class UserDB extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         db.insert(UserTable.TABLE_NAME, null, values);
+//        db.update(
+//                UserTable.TABLE_NAME,
+//                values,
+//                UserTable.COLUMN_ID + " = ?",
+//                new String[] { String.valueOf(0) }
+//        );
         db.setTransactionSuccessful();
         db.endTransaction();
     }

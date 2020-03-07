@@ -83,11 +83,13 @@ public class Test extends AppCompatActivity {
 
                     if(button.getText()==cOption){
                         button.setText(Correct);
+                        button.setBackgroundColor(getResources().getColor(R.color.lime));
                         Answer[position]= "Correct";
                     }
                     else{
                         button.setText(Wrong);
                         Answer[position]= "Wrong";
+                        button.setBackgroundColor(getResources().getColor(R.color.red));
                     }
                     clickedFlag[position]=true;
                     holder.option1.setEnabled(false);
