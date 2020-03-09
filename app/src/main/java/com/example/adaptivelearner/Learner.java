@@ -79,4 +79,8 @@ public class Learner {
     public String getCompleted() {
         return completed;
     }
+
+    public void appendCompleted(String completed){
+        this.completed += completed;
+    }
 }

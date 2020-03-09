@@ -12,12 +12,11 @@ import android.widget.TextView;
 public class Evaluation extends AppCompatActivity {
 
     String[] result;
-    int correct;
     TextView score,title,difficulty;
     String topic,testDifficulty;
     Button contn;
     public Learner learner;
-    float finalResult;
+    float finalResult,correct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,8 +44,14 @@ public class Evaluation extends AppCompatActivity {
         }
 
         finalResult = correct/result.length;
+        Log.d("finalResult", String.valueOf(finalResult));
+        Log.d("correct", String.valueOf(correct));
+        Log.d("length", String.valueOf(result.length));
         String Marks = correct +"/"+ result.length;
         score.setText(Marks);
+        if(learner.getCompleted()==null){
+            learner.setCompleted("");
+        }
 
         if(testDifficulty.equals("Evaluate")){
             learner.setLearnerState("N/A");
@@ -61,7 +66,7 @@ public class Evaluation extends AppCompatActivity {
             learner.setLearnerState("Expert");
         }
 
-        if(finalResult<.4){
+        if(finalResult<.3){
             learner.setPerformance("Poor");
         }
         else if(finalResult<.6){
@@ -76,13 +81,40 @@ public class Evaluation extends AppCompatActivity {
         else{
             learner.setPerformance("Excellent");
             if(testDifficulty.equals("Easy")) {
-                learner.setCompleted("A");
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("A");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("D");
+                    }
+                }
             }
             if (testDifficulty.equals("Medium")){
-                learner.setCompleted("B");
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("B");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("E");
+                    }
+                }
             }
             if(testDifficulty.equals("Hard")){
-                learner.setCompleted("C");
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("C");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("F");
+                    }
+                }
             }
         }
 
