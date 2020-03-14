@@ -29,7 +29,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Signals are electromagnetic representations of?","Data","Memory","Transmission","Wi-FI","Data","Medium"));
         quiz.add(new QuizQuestions("Signals can be categorized as:","Direct/Analog","Alternate/Direct","Analog/Digital","Strong/Weak","Analog/Digital","Medium"));
         quiz.add(new QuizQuestions("Analog signals are propagated over?","twisted pair","coaxial cable","Wi-Fi","All of the Above","All of the Above","Medium"));
-        quiz.add(new QuizQuestions("After a certain distance, analog signals will?","Attenuate  ","Strengthen","Widen","Accelerate","Attenuate","Medium"));
+        quiz.add(new QuizQuestions("After a certain distance, analog signals will?","Attenuate","Strengthen","Widen","Accelerate","Attenuate","Medium"));
         quiz.add(new QuizQuestions("Positive Voltage Pulses and Negative Voltage pulses in a digital signal are represented by:","Alpha/Beta","Sigma/K","0/1","AC/DC","0/1","Medium"));
         quiz.add(new QuizQuestions("Analog data can converted to digital using a ___","Codec","Hub","Modem","Encryptor","Codec","Medium"));
         quiz.add(new QuizQuestions("Advantage of Digital Signals over Analog ?","Less Noise","Faster","Less Attenuation","Wider","Less Noise","Medium"));

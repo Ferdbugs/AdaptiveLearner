@@ -170,8 +170,20 @@ public class Test extends AppCompatActivity {
                 }
                 else
                 {
-                    quiz = quizConstructor.getCommunicationHardQuiz();
-                    Collections.shuffle(quiz);
+                    if(learner.getCompleted().contains("C")){
+                        if(learner.getCompleted().contains("B")){
+                            quiz = quizConstructor.getNetworksEasyQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        if(learner.getCompleted().contains("A")){
+                            quiz = quizConstructor.getCommunicationMediumQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                    }
+                    else {
+                        quiz = quizConstructor.getCommunicationHardQuiz();
+                        Collections.shuffle(quiz);
+                    }
                 }
             }
             if (topic.equals("Computer Networks")) {

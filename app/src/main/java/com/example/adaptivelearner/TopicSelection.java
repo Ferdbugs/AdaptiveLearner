@@ -16,7 +16,7 @@ public class TopicSelection extends AppCompatActivity {
     Button Communication,Networks;
     String ComAndTrans= "Communication And Transmission Media";
     String CompNetworks= "Computer Networks";
-    String Completed= "[Completed]";
+    String Completed= "You have completed the course! Congrats!!";
     String CompleteCom = ComAndTrans+Completed;
     String CompleteNetwork = CompNetworks+Completed;
     Learner learner;
@@ -29,19 +29,18 @@ public class TopicSelection extends AppCompatActivity {
         learner = Learner.get();
         Communication = findViewById(R.id.CommsAndTransmission);
         Networks = findViewById(R.id.CompNetworks);
+        Networks.setVisibility(View.INVISIBLE);
 
-        if(learner.getCompleted()!=null) {
-            if (learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")) {
-                Communication.setText(CompleteCom);
-            }
-            if (learner.getCompleted().contains("D") && learner.getCompleted().contains("E") && learner.getCompleted().contains("F")) {
-                Networks.setText(CompleteNetwork);
-            }
-        }
 
         Communication.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                if(learner.getCompleted()!=null){
+                    if (learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")) {
+                        Communication.setText(CompleteCom);
+                        Communication.setEnabled(false);
+                    }
+                }
                 Intent intent = new Intent(getBaseContext(), Test.class);
                 learner.setCurrentTopic(ComAndTrans);
                 startActivity(intent);
