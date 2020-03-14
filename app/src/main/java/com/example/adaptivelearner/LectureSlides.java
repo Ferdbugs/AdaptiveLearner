@@ -25,7 +25,7 @@ import java.io.IOException;
 
 public class LectureSlides extends AppCompatActivity {
 
-    String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert;
+    String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert, complete;
     public Learner learner;
     TextView recommended,subject;
     Button material,contn,homeScreen;
@@ -50,6 +50,7 @@ public class LectureSlides extends AppCompatActivity {
         beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
         intermediate= "Your score is average, intermediate content is recommended for you.";
         expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
+        complete = "You have completed the course! Well done!!";
 
         subject.setText(topic);
 
@@ -107,15 +108,28 @@ public class LectureSlides extends AppCompatActivity {
     }
 
     void setContentComplexity(){
+        if(learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")){
+            recommended.setText(complete);
+            material.setEnabled(false);
+            contn.setEnabled(false);
+        }
         if(contentComplexity.equals("Low")){
-            recommended.setText(beginner);
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             learner.setCurrentDifficulty("Easy");
         }
         else if(contentComplexity.equals("Medium")){
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             recommended.setText(intermediate);
             learner.setCurrentDifficulty("Medium");
         }
         else{
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             recommended.setText(expert);
             learner.setCurrentDifficulty("Hard");
         }

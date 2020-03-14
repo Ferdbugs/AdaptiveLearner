@@ -34,7 +34,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Analog data can converted to digital using a ___","Codec","Hub","Modem","Encryptor","Codec","Medium"));
         quiz.add(new QuizQuestions("Advantage of Digital Signals over Analog ?","Less Noise","Faster","Less Attenuation","Wider","Less Noise","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is determined using ?","Bit Interval/Rate","Strength","Attenuation","Frequency","Bit Interval/Rate","Medium"));
-        quiz.add(new QuizQuestions("Digital signal with a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6","Medium"));
+        quiz.add(new QuizQuestions("Digital signal with a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6)","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is typically expressed in?","Bits per Second","Lambda","Milliseconds","Bytes","Bits per Second","Medium"));
 
         return  quiz;

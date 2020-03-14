@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -150,6 +151,8 @@ public class Test extends AppCompatActivity {
 
         title.setText(learner.getCurrentTopic());
 
+        Log.d("COMPLETED:", learner.getCompleted());
+
         if(topic!=null) {
             if (topic.equals("Communication And Transmission Media")) {
                 prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);
@@ -164,18 +167,33 @@ public class Test extends AppCompatActivity {
                     Collections.shuffle(quiz);
                 }
                 else if(prevLearner.getCurrentDifficulty().equals("Medium")){
-
-                    quiz = quizConstructor.getCommunicationMediumQuiz();
-                    Collections.shuffle(quiz);
+                    if(learner.getCompleted().contains("B")){
+                        if(learner.getCompleted().contains("C")){
+                            quiz = quizConstructor.getCommunicationEasyQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        else {
+                            quiz = quizConstructor.getCommunicationHardQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                    }
+                    else{
+                        quiz = quizConstructor.getCommunicationMediumQuiz();
+                        Collections.shuffle(quiz);
+                    }
                 }
                 else
                 {
                     if(learner.getCompleted().contains("C")){
                         if(learner.getCompleted().contains("B")){
-                            quiz = quizConstructor.getNetworksEasyQuiz();
+                            quiz = quizConstructor.getCommunicationEasyQuiz();
                             Collections.shuffle(quiz);
                         }
-                        if(learner.getCompleted().contains("A")){
+                        else if(learner.getCompleted().contains("A")){
+                            quiz = quizConstructor.getCommunicationMediumQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        else{
                             quiz = quizConstructor.getCommunicationMediumQuiz();
                             Collections.shuffle(quiz);
                         }

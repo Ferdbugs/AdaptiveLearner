@@ -17,8 +17,6 @@ public class TopicSelection extends AppCompatActivity {
     String ComAndTrans= "Communication And Transmission Media";
     String CompNetworks= "Computer Networks";
     String Completed= "You have completed the course! Congrats!!";
-    String CompleteCom = ComAndTrans+Completed;
-    String CompleteNetwork = CompNetworks+Completed;
     Learner learner;
 
     @Override
@@ -37,13 +35,15 @@ public class TopicSelection extends AppCompatActivity {
             public void onClick(View v) {
                 if(learner.getCompleted()!=null){
                     if (learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")) {
-                        Communication.setText(CompleteCom);
+                        Communication.setText(Completed);
                         Communication.setEnabled(false);
                     }
                 }
-                Intent intent = new Intent(getBaseContext(), Test.class);
-                learner.setCurrentTopic(ComAndTrans);
-                startActivity(intent);
+                else {
+                    Intent intent = new Intent(getBaseContext(), Test.class);
+                    learner.setCurrentTopic(ComAndTrans);
+                    startActivity(intent);
+                }
             }
         });
 
