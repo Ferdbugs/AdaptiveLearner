@@ -194,4 +194,10 @@ public class LectureSlides extends AppCompatActivity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        Intent Home = new Intent(LectureSlides.this,MainActivity.class);
+        startActivity(Home);
+    }
 }

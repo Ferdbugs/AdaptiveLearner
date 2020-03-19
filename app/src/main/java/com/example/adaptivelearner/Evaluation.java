@@ -2,11 +2,15 @@ package com.example.adaptivelearner;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 public class Evaluation extends AppCompatActivity {
@@ -126,5 +130,27 @@ public class Evaluation extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Your Quiz Progress Will Be Lost! Do you still wish to continue?");
+
+        builder.setPositiveButton("Leave", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent Home = new Intent(Evaluation.this,MainActivity.class);
+                startActivity(Home);
+            }
+        });
+
+        builder.setNegativeButton("Stay", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+
+            }
+        });
+
+        builder.show();
     }
 }
