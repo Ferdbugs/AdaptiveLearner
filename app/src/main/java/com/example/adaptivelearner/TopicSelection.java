@@ -43,11 +43,13 @@ public class TopicSelection extends AppCompatActivity {
                         learner.setCurrentTopic(ComAndTrans);
                         startActivity(intent);
                     }
+                    finish();
                 }
                 else {
                     Intent intent = new Intent(getBaseContext(), Test.class);
                     learner.setCurrentTopic(ComAndTrans);
                     startActivity(intent);
+                    finish();
                 }
             }
         });

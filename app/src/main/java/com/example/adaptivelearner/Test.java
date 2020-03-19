@@ -108,6 +108,7 @@ public class Test extends AppCompatActivity {
                         learner.setCurrentDifficulty(difficulty);
                         learner.setCurrentTopic(topic);
                         startActivity(Evaluate);
+                        finish();
                     }
 
                 }

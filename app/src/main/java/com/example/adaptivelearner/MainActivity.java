@@ -50,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
                 if(learner.getCurrentTopic()!=null) {
-                    finish();
                     Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);
                     startActivity(Recommended);
+                    finish();
                 }
                 else{
                     pickup.setText(firstTime);

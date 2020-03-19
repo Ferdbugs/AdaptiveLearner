@@ -57,9 +57,9 @@ public class LectureSlides extends AppCompatActivity {
         homeScreen.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent Home = new Intent(LectureSlides.this,MainActivity.class);
                 startActivity(Home);
+                finish();
             }
         });
 
@@ -198,8 +198,8 @@ public class LectureSlides extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        finish();
         Intent Home = new Intent(LectureSlides.this,MainActivity.class);
         startActivity(Home);
+        finish();
     }
 }

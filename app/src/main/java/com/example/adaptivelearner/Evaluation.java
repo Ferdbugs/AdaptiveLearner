@@ -125,9 +125,9 @@ public class Evaluation extends AppCompatActivity {
         contn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                finish();
                 Intent Material = new Intent(Evaluation.this,LectureSlides.class);
                 startActivity(Material);
+                finish();
             }
         });
 
