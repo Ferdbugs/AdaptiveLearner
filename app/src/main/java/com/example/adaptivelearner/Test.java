@@ -36,15 +36,16 @@ public class Test extends AppCompatActivity {
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
 
         boolean[] clickedFlag;
-        private String[] Answer;
+        private boolean[] Answer;
         int counter;
         public Learner learner;
-
+        String[] givenAnswers;
 
         public CustomAdapter(@NonNull Context context, int resource, @NonNull List<QuizQuestions> objects) {
             super(context, resource, objects);
             clickedFlag = new boolean[objects.size()];
-            Answer = new String[objects.size()];
+            Answer = new boolean[objects.size()];
+            givenAnswers = new String[objects.size()];
         }
 
         private class holdView {
@@ -57,8 +58,6 @@ public class Test extends AppCompatActivity {
         public View getView(final int position, @Nullable View convertView, @NonNull ViewGroup parent) {
 
             final holdView holder;
-            final String Correct = "Correct!";
-            final String Wrong = "Wrong!";
 
             final QuizQuestions Question = getItem(position);
 
@@ -82,22 +81,26 @@ public class Test extends AppCompatActivity {
                 public void onClick(View v) {
                     Button button = (Button) v;
 
+                    givenAnswers[position] = button.getText().toString();
+
                     if(button.getText()==cOption){
-                        button.setText(Correct);
+                        button.setText(R.string.correct);
                         button.setBackgroundColor(getResources().getColor(R.color.lime));
-                        Answer[position]= "Correct";
+                        Answer[position]= true;
                     }
                     else{
-                        button.setText(Wrong);
-                        Answer[position]= "Wrong";
+                        button.setText(R.string.wrong);
+                        Answer[position]= false;
                         button.setBackgroundColor(getResources().getColor(R.color.red));
                     }
+
                     clickedFlag[position]=true;
                     holder.option1.setEnabled(false);
                     holder.option2.setEnabled(false);
                     holder.option3.setEnabled(false);
                     holder.option4.setEnabled(false);
                     counter++;
+
                     if(counter==Answer.length){
                         learner = Learner.get();
                         Intent Evaluate = new Intent(Test.this,Evaluation.class);
@@ -116,20 +119,58 @@ public class Test extends AppCompatActivity {
             holder.option4.setOnClickListener(listener);
 
 
-            if(Question!=null){
-                holder.Question.setText(Question.getQuestion());
-                holder.option1.setText(wOption1);
-                holder.option2.setText(wOption2);
-                holder.option3.setText(wOption3);
-                holder.option4.setText(wOption4);
-
-            }
+            holder.Question.setText(Question.getQuestion());
+            holder.option1.setText(wOption1);
+            holder.option2.setText(wOption2);
+            holder.option3.setText(wOption3);
+            holder.option4.setText(wOption4);
 
             if(clickedFlag[position]){
                 holder.option1.setEnabled(false);
                 holder.option2.setEnabled(false);
                 holder.option3.setEnabled(false);
                 holder.option4.setEnabled(false);
+
+                if(holder.option1.getText().equals(givenAnswers[position])){
+                    if(Answer[position]){
+                        holder.option1.setText(R.string.correct);
+                        holder.option1.setBackgroundColor(getResources().getColor(R.color.lime));
+                    }
+                    else{
+                        holder.option1.setText(R.string.wrong);
+                        holder.option1.setBackgroundColor(getResources().getColor(R.color.red));
+                    }
+                }
+                if(holder.option2.getText().equals(givenAnswers[position])){
+                    if(Answer[position]){
+                        holder.option2.setText(R.string.correct);
+                        holder.option2.setBackgroundColor(getResources().getColor(R.color.lime));
+                    }
+                    else{
+                        holder.option2.setText(R.string.wrong);
+                        holder.option2.setBackgroundColor(getResources().getColor(R.color.red));
+                    }
+                }
+                if(holder.option3.getText().equals(givenAnswers[position])){
+                    if(Answer[position]){
+                        holder.option3.setText(R.string.correct);
+                        holder.option3.setBackgroundColor(getResources().getColor(R.color.lime));
+                    }
+                    else{
+                        holder.option3.setText(R.string.wrong);
+                        holder.option3.setBackgroundColor(getResources().getColor(R.color.red));
+                    }
+                }
+                if(holder.option4.getText().equals(givenAnswers[position])){
+                    if(Answer[position]){
+                        holder.option4.setText(R.string.correct);
+                        holder.option4.setBackgroundColor(getResources().getColor(R.color.lime));
+                    }
+                    else{
+                        holder.option4.setText(R.string.wrong);
+                        holder.option4.setBackgroundColor(getResources().getColor(R.color.red));
+                    }
+                }
             }
             return convertView;
 

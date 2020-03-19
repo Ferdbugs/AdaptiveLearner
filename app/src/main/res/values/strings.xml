@@ -2,6 +2,8 @@
     <string name="app_name">Adaptive Learner</string>
     <string name="title_activity_topics">Topics</string>
     <string name="evaluation">Evaluation</string>
+    <string name="correct">Correct!</string>
+    <string name="wrong">Wrong!</string>
     <string-array name="dropdown">
         <item>Communication and Transmission Media</item>
         <item>Computer Networks</item>

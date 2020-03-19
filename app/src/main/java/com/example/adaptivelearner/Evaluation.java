@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 public class Evaluation extends AppCompatActivity {
 
-    String[] result;
+    boolean[] result;
     TextView score,title,difficulty;
     String topic,testDifficulty;
     Button contn;
@@ -29,7 +29,7 @@ public class Evaluation extends AppCompatActivity {
         title = findViewById(R.id.evaluationTitle);
         difficulty = findViewById(R.id.Difficulty);
 
-        result = getIntent().getStringArrayExtra("Answers");
+        result = getIntent().getBooleanArrayExtra("Answers");
         topic = learner.getCurrentTopic();
         testDifficulty = learner.getCurrentDifficulty();
 
@@ -38,7 +38,7 @@ public class Evaluation extends AppCompatActivity {
 
         for(int i = 0; i< result.length; i++){
 
-            if(result[i].equals("Correct")){
+            if(result[i]){
                 correct++;
             }
         }
