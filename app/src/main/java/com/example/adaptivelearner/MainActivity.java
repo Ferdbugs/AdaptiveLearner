@@ -49,8 +49,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                finish();
                 if(learner.getCurrentTopic()!=null) {
+                    finish();
                     Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);
                     startActivity(Recommended);
                 }
