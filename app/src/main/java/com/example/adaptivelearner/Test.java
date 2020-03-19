@@ -151,8 +151,6 @@ public class Test extends AppCompatActivity {
 
         title.setText(learner.getCurrentTopic());
 
-        Log.d("COMPLETED:", learner.getCompleted());
-
         if(topic!=null) {
             if (topic.equals("Communication And Transmission Media")) {
                 prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);

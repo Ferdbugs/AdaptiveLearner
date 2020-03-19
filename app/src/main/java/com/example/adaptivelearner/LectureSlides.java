@@ -141,7 +141,7 @@ public class LectureSlides extends AppCompatActivity {
 
     void connectServer() {
 
-        String postUrl = "http://172.17.0.218:5000/";
+        String postUrl = "http://ferdbugs88.pythonanywhere.com/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)
