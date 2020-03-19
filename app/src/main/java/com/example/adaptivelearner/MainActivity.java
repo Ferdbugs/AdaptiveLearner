@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -32,17 +33,24 @@ public class MainActivity extends AppCompatActivity {
         learner = Learner.get();
         firstTime = "Seems like this is your first time, Welcome!";
 
+        prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);
+        if(prevLearner!=null){
+            learner.setCurrentTopic(prevLearner.getCurrentTopic());
+            learner.setLearnerState(prevLearner.getLearnerState());
+            learner.setPerformance(prevLearner.getPerformance());
+            learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
+            learner.setCompleted(prevLearner.getCompleted());
+        }
+        else {
+            UserDB.getInstance(getApplicationContext()).insertLearner(learner);
+        }
+
         pickup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                prevLearner = UserDB.getInstance(getApplicationContext()).getLatest();
-                if(prevLearner!=null){
-                    learner.setCurrentTopic(prevLearner.getCurrentTopic());
-                    learner.setLearnerState(prevLearner.getLearnerState());
-                    learner.setPerformance(prevLearner.getPerformance());
-                    learner.setCurrentDifficulty(prevLearner.getCurrentDifficulty());
 
-                    Intent Recommended = new Intent(MainActivity.this,LectureSlides.class);
+                if(learner.getCurrentTopic()!=null) {
+                    Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);
                     startActivity(Recommended);
                 }
                 else{

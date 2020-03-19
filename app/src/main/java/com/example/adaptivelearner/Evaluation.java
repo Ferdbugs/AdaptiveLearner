@@ -12,12 +12,11 @@ import android.widget.TextView;
 public class Evaluation extends AppCompatActivity {
 
     String[] result;
-    int correct;
     TextView score,title,difficulty;
     String topic,testDifficulty;
     Button contn;
     public Learner learner;
-    int finalResult;
+    float finalResult,correct;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +29,6 @@ public class Evaluation extends AppCompatActivity {
         title = findViewById(R.id.evaluationTitle);
         difficulty = findViewById(R.id.Difficulty);
 
-
         result = getIntent().getStringArrayExtra("Answers");
         topic = learner.getCurrentTopic();
         testDifficulty = learner.getCurrentDifficulty();
@@ -42,12 +40,18 @@ public class Evaluation extends AppCompatActivity {
 
             if(result[i].equals("Correct")){
                 correct++;
-                finalResult = correct/result.length;
             }
         }
 
+        finalResult = correct/result.length;
+        Log.d("finalResult", String.valueOf(finalResult));
+        Log.d("correct", String.valueOf(correct));
+        Log.d("length", String.valueOf(result.length));
         String Marks = correct +"/"+ result.length;
         score.setText(Marks);
+        if(learner.getCompleted()==null){
+            learner.setCompleted("");
+        }
 
         if(testDifficulty.equals("Evaluate")){
             learner.setLearnerState("N/A");
@@ -62,20 +66,56 @@ public class Evaluation extends AppCompatActivity {
             learner.setLearnerState("Expert");
         }
 
-        if(finalResult<.4){
+        if(finalResult<.3){
             learner.setPerformance("Poor");
         }
-        else if(correct<.6){
+        else if(finalResult<.6){
             learner.setPerformance("Moderate");
         }
-        else if(correct<.7){
+        else if(finalResult<.7){
             learner.setPerformance("Good");
         }
-        else if(correct<.9){
+        else if(finalResult<.9){
             learner.setPerformance("VeryGood");
         }
         else{
             learner.setPerformance("Excellent");
+            if(testDifficulty.equals("Easy")) {
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("A");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("D");
+                    }
+                }
+            }
+            if (testDifficulty.equals("Medium")){
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("B");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("E");
+                    }
+                }
+            }
+            if(testDifficulty.equals("Hard")){
+                if(learner.getCurrentTopic().equals("Communication And Transmission Media")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("C");
+                    }
+                }
+                if(learner.getCurrentTopic().equals("Computer Networks")){
+                    if((learner.getCompleted()).length()<3) {
+                        learner.appendCompleted("F");
+                    }
+                }
+            }
         }
 
         contn.setOnClickListener(new View.OnClickListener() {

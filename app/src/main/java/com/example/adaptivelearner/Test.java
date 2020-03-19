@@ -7,12 +7,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import com.example.adaptivelearner.Provider.UserDB;
 
 import java.lang.reflect.Array;
 import java.util.Collections;
@@ -27,7 +30,7 @@ public class Test extends AppCompatActivity {
     private QuizConstructor quizConstructor;
     private List<QuizQuestions> quiz;
     private String topic;
-    private Learner learner;
+    private Learner learner,prevLearner;
     private TextView title;
 
     private class CustomAdapter extends ArrayAdapter<QuizQuestions> {
@@ -81,11 +84,13 @@ public class Test extends AppCompatActivity {
 
                     if(button.getText()==cOption){
                         button.setText(Correct);
+                        button.setBackgroundColor(getResources().getColor(R.color.lime));
                         Answer[position]= "Correct";
                     }
                     else{
                         button.setText(Wrong);
                         Answer[position]= "Wrong";
+                        button.setBackgroundColor(getResources().getColor(R.color.red));
                     }
                     clickedFlag[position]=true;
                     holder.option1.setEnabled(false);
@@ -138,6 +143,7 @@ public class Test extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         learner = Learner.get();
+        prevLearner = new Learner();
         questions = findViewById(R.id.testQuestions);
         quizConstructor = new QuizConstructor();
         topic = learner.getCurrentTopic();
@@ -147,37 +153,68 @@ public class Test extends AppCompatActivity {
 
         if(topic!=null) {
             if (topic.equals("Communication And Transmission Media")) {
-                if(learner.getCurrentDifficulty()==null){
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(0);
+                if(prevLearner.getCurrentDifficulty()==null){
+
                     quiz = quizConstructor.getCommunicationEvaluateQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Easy")){
+                else if(prevLearner.getCurrentDifficulty().equals("Easy")){
 
                     quiz = quizConstructor.getCommunicationEasyQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Medium")){
-
-                    quiz = quizConstructor.getCommunicationMediumQuiz();
-                    Collections.shuffle(quiz);
+                else if(prevLearner.getCurrentDifficulty().equals("Medium")){
+                    if(learner.getCompleted().contains("B")){
+                        if(learner.getCompleted().contains("C")){
+                            quiz = quizConstructor.getCommunicationEasyQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        else {
+                            quiz = quizConstructor.getCommunicationHardQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                    }
+                    else{
+                        quiz = quizConstructor.getCommunicationMediumQuiz();
+                        Collections.shuffle(quiz);
+                    }
                 }
                 else
                 {
-                    quiz = quizConstructor.getCommunicationHardQuiz();
-                    Collections.shuffle(quiz);
+                    if(learner.getCompleted().contains("C")){
+                        if(learner.getCompleted().contains("B")){
+                            quiz = quizConstructor.getCommunicationEasyQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        else if(learner.getCompleted().contains("A")){
+                            quiz = quizConstructor.getCommunicationMediumQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                        else{
+                            quiz = quizConstructor.getCommunicationMediumQuiz();
+                            Collections.shuffle(quiz);
+                        }
+                    }
+                    else {
+                        quiz = quizConstructor.getCommunicationHardQuiz();
+                        Collections.shuffle(quiz);
+                    }
                 }
             }
             if (topic.equals("Computer Networks")) {
-                if(learner.getCurrentDifficulty()==null){
+                prevLearner = UserDB.getInstance(getApplicationContext()).getLearner(1);
+                if(prevLearner.getCurrentDifficulty()==null){
+
                     quiz = quizConstructor.getNetworkEvaluateQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Easy")){
+                else if(prevLearner.getCurrentDifficulty().equals("Easy")){
 
                     quiz = quizConstructor.getNetworksEasyQuiz();
                     Collections.shuffle(quiz);
                 }
-                else if(learner.getCurrentDifficulty().equals("Medium")){
+                else if(prevLearner.getCurrentDifficulty().equals("Medium")){
 
                     quiz = quizConstructor.getNetworkMediumQuiz();
                     Collections.shuffle(quiz);

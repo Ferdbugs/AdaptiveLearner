@@ -13,7 +13,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Data Communication deals with the ____ of signals.","Types","Transmission","Price","Colors","Transmission","Easy"));
         quiz.add(new QuizQuestions("Data communications is a subset of?","Data Science","Telecommunication","Concurrency","Networking","Telecommunication","Easy"));
         quiz.add(new QuizQuestions("Transmission media is classified as ?","guided/unguided","strong/weak","fast/slow","smooth/choppy","guided/unguided","Easy"));
-        quiz.add(new QuizQuestions("With guided media the waves are guided along a ___ path.","physical","wireless","electric","electromagnetic","CA","Easy"));
+        quiz.add(new QuizQuestions("With guided media the waves are guided along a ___ path.","physical","wireless","electric","electromagnetic","physical","Easy"));
         quiz.add(new QuizQuestions("Example of Guided Media:","Twisted pair","Antenna","Wi-FI","Radio","Twisted pair","Easy"));
         quiz.add(new QuizQuestions("Example of Unguided Media:","Coaxial Cable","Optical Fibre","Wi-Fi","Twisted Pair","Wi-Fi","Easy"));
         quiz.add(new QuizQuestions("How many device share link in point-to-point?","Four","Three","Five","Two","Two","Easy"));
@@ -29,12 +29,12 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Signals are electromagnetic representations of?","Data","Memory","Transmission","Wi-FI","Data","Medium"));
         quiz.add(new QuizQuestions("Signals can be categorized as:","Direct/Analog","Alternate/Direct","Analog/Digital","Strong/Weak","Analog/Digital","Medium"));
         quiz.add(new QuizQuestions("Analog signals are propagated over?","twisted pair","coaxial cable","Wi-Fi","All of the Above","All of the Above","Medium"));
-        quiz.add(new QuizQuestions("After a certain distance, analog signals will?","Attenuate  ","Strengthen","Widen","Accelerate","Attenuate","Medium"));
+        quiz.add(new QuizQuestions("After a certain distance, analog signals will?","Attenuate","Strengthen","Widen","Accelerate","Attenuate","Medium"));
         quiz.add(new QuizQuestions("Positive Voltage Pulses and Negative Voltage pulses in a digital signal are represented by:","Alpha/Beta","Sigma/K","0/1","AC/DC","0/1","Medium"));
         quiz.add(new QuizQuestions("Analog data can converted to digital using a ___","Codec","Hub","Modem","Encryptor","Codec","Medium"));
         quiz.add(new QuizQuestions("Advantage of Digital Signals over Analog ?","Less Noise","Faster","Less Attenuation","Wider","Less Noise","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is determined using ?","Bit Interval/Rate","Strength","Attenuation","Frequency","Bit Interval/Rate","Medium"));
-        quiz.add(new QuizQuestions("Digital signal with a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6","Medium"));
+        quiz.add(new QuizQuestions("Digital signal with a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6)","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is typically expressed in?","Bits per Second","Lambda","Milliseconds","Bytes","Bits per Second","Medium"));
 
         return  quiz;
@@ -78,7 +78,7 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("A network is a series of ___ interconnected by a communication path.","circuits","signals","nodes","devices","nodes","Easy"));
         quiz.add(new QuizQuestions("The Internet is a worldwide ___ network","meta","lan","vpn","All of the above","meta","Easy"));
         quiz.add(new QuizQuestions("A network is a interconnection of ____","computers","signals","A & B","None","computers","Easy"));
-        quiz.add(new QuizQuestions("Goal of computer networks:","Mobile computing","Mobile computing","Load balancing ","All of the above","All of the above","Easy"));
+        quiz.add(new QuizQuestions("Goal of computer networks:","Mobile computing","Communication","Load balancing ","All of the above","All of the above","Easy"));
         quiz.add(new QuizQuestions("Computer Networks aim for increased ____","robustness","transmission","range","All of the above","robustness","Easy"));
         quiz.add(new QuizQuestions("Use of computer networks:","video conference","email","file transfer","All of the above","All of the above","Easy"));
 

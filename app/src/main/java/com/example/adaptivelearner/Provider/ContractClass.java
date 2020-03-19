@@ -21,6 +21,7 @@ public class ContractClass {
         public static final String COLUMN_DIFFICULTY = "_difficulty";
         public static final String COLUMN_PERFORMANCE = "_performance";
         public static final String COLUMN_LEARNER_STATE = "_learner_state";
+        public static final String COLUMN_COMPLETED = "_completed";
         public static final String COLUMN_DATE = "_date";
 
     }

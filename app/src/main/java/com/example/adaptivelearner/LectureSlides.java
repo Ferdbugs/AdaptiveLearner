@@ -25,9 +25,9 @@ import java.io.IOException;
 
 public class LectureSlides extends AppCompatActivity {
 
-    String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert;
+    String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert, complete;
     public Learner learner;
-    TextView recommended;
+    TextView recommended,subject;
     Button material,contn,homeScreen;
 
     @Override
@@ -41,13 +41,18 @@ public class LectureSlides extends AppCompatActivity {
         difficulty = learner.getCurrentDifficulty();
         performance = learner.getPerformance();
         learnerState = learner.getLearnerState();
+
         material = findViewById(R.id.Material);
         contn = findViewById(R.id.ContnTest);
         homeScreen = findViewById(R.id.homeScreen);
+        subject = findViewById(R.id.subject);
 
         beginner= "Your Score is below the intermediate level. It is strongly recommended you start from the basics.";
         intermediate= "Your score is average, intermediate content is recommended for you.";
         expert= "You are well versed in this course. We recommend the expert difficulty content for you to fine tune your skills";
+        complete = "You have completed the course! Well done!!";
+
+        subject.setText(topic);
 
         homeScreen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -103,27 +108,40 @@ public class LectureSlides extends AppCompatActivity {
     }
 
     void setContentComplexity(){
+        if(learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")){
+            recommended.setText(complete);
+            material.setEnabled(false);
+            contn.setEnabled(false);
+        }
         if(contentComplexity.equals("Low")){
-            recommended.setText(beginner);
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             learner.setCurrentDifficulty("Easy");
         }
         else if(contentComplexity.equals("Medium")){
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             recommended.setText(intermediate);
             learner.setCurrentDifficulty("Medium");
         }
         else{
+            if(!recommended.getText().equals(complete)){
+                recommended.setText(beginner);
+            }
             recommended.setText(expert);
             learner.setCurrentDifficulty("Hard");
         }
     }
 
     void saveUser(){
-        UserDB.getInstance(getApplicationContext()).insertLearner(learner);
+        UserDB.getInstance(getApplicationContext()).updateLearner(learner);
     }
 
     void connectServer() {
 
-        String postUrl = "http://10.163.19.224:5000/";
+        String postUrl = "http://ferdbugs88.pythonanywhere.com/";
         RequestBody requestBody = new MultipartBody.Builder()
                 .setType(MultipartBody.FORM)
                 .addFormDataPart("performance", performance)

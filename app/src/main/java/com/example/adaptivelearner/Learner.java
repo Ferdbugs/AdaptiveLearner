@@ -14,7 +14,7 @@ public class Learner {
         }
         return mLearner;
     }
-    private String currentTopic,currentDifficulty,performance,learnerState;
+    private String currentTopic,currentDifficulty,performance,learnerState,completed;
     private long date;
     private int id;
 
@@ -70,5 +70,17 @@ public class Learner {
 
     public String getLearnerState() {
         return learnerState;
+    }
+
+    public void setCompleted(String completed) {
+        this.completed = completed;
+    }
+
+    public String getCompleted() {
+        return completed;
+    }
+
+    public void appendCompleted(String completed){
+        this.completed += completed;
     }
 }

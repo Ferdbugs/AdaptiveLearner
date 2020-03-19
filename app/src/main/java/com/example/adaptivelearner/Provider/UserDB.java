@@ -34,17 +34,12 @@ public class UserDB extends SQLiteOpenHelper {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-
-
-
-
-
-
     @Override
     public void onCreate(SQLiteDatabase db) {
         String CREATE_TABLE_SQL = String.format(
                 "CREATE TABLE %s (" +
                         "%s INTEGER PRIMARY KEY," +
+                        "%s TEXT," +
                         "%s TEXT," +
                         "%s TEXT," +
                         "%s TEXT," +
@@ -56,6 +51,7 @@ public class UserDB extends SQLiteOpenHelper {
                 UserTable.COLUMN_DIFFICULTY,
                 UserTable.COLUMN_PERFORMANCE,
                 UserTable.COLUMN_LEARNER_STATE,
+                UserTable.COLUMN_COMPLETED,
                 UserTable.COLUMN_DATE
 
         );
@@ -73,15 +69,39 @@ public class UserDB extends SQLiteOpenHelper {
     public void insertLearner(Learner learner) {
         ContentValues values = new ContentValues();
 
+        values.put(UserTable.COLUMN_ID, 0);
         values.put(UserTable.COLUMN_TOPIC, learner.getCurrentTopic());
         values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
         values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
         values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getCompleted());
         values.put(UserTable.COLUMN_DATE,learner.getDate());
 
         SQLiteDatabase db = getWritableDatabase();
         db.beginTransaction();
         db.insert(UserTable.TABLE_NAME, null, values);
+        db.setTransactionSuccessful();
+        db.endTransaction();
+    }
+
+    public void updateLearner(Learner learner) {
+        ContentValues values = new ContentValues();
+
+        values.put(UserTable.COLUMN_TOPIC, learner.getCurrentTopic());
+        values.put(UserTable.COLUMN_DIFFICULTY, learner.getCurrentDifficulty());
+        values.put(UserTable.COLUMN_PERFORMANCE, learner.getPerformance());
+        values.put(UserTable.COLUMN_LEARNER_STATE, learner.getLearnerState());
+        values.put(UserTable.COLUMN_COMPLETED, learner.getCompleted());
+        values.put(UserTable.COLUMN_DATE,learner.getDate());
+
+        SQLiteDatabase db = getWritableDatabase();
+        db.beginTransaction();
+        db.update(
+                UserTable.TABLE_NAME,
+                values,
+                UserTable.COLUMN_ID + " = ?",
+                new String[] { String.valueOf(0) }
+        );
         db.setTransactionSuccessful();
         db.endTransaction();
     }
@@ -146,7 +166,45 @@ public class UserDB extends SQLiteOpenHelper {
                 learner.setCurrentDifficulty(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_DIFFICULTY)));
                 learner.setPerformance(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PERFORMANCE)));
                 learner.setLearnerState(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LEARNER_STATE)));
+                learner.setCompleted(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_COMPLETED)));
                 learner.setDate(cursor.getLong(cursor.getColumnIndex(UserTable.COLUMN_DATE)));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return learner;
+    }
+
+    public Learner getLatestByTopic(String topic) {
+
+        SQLiteDatabase db = getReadableDatabase();
+        Learner learner = new Learner();
+
+        try (
+                Cursor cursor = db.query(
+                        UserTable.TABLE_NAME,
+                        null,
+                        null,
+                        null,
+                        null,
+                        null,
+                        UserTable.COLUMN_DATE + " DESC"
+                )
+        ) {
+
+            if (cursor != null && cursor.moveToFirst()) {
+                do {
+                        learner.setId(cursor.getInt(cursor.getColumnIndex(UserTable.COLUMN_ID)));
+                        if(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_TOPIC)).equals(topic)){
+                            learner.setCurrentTopic(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_TOPIC)));
+                            learner.setCurrentDifficulty(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_DIFFICULTY)));
+                            learner.setPerformance(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_PERFORMANCE)));
+                            learner.setLearnerState(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_LEARNER_STATE)));
+                            learner.setCompleted(cursor.getString(cursor.getColumnIndex(UserTable.COLUMN_COMPLETED)));
+                        }
+                        learner.setDate(cursor.getLong(cursor.getColumnIndex(UserTable.COLUMN_DATE)));
+                } while (cursor.moveToNext());
             }
         } catch (Exception e) {
             e.printStackTrace();
