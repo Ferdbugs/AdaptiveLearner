@@ -49,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
+                finish();
                 if(learner.getCurrentTopic()!=null) {
                     Intent Recommended = new Intent(MainActivity.this, LectureSlides.class);
                     startActivity(Recommended);
@@ -118,5 +119,10 @@ public class MainActivity extends AppCompatActivity {
         }catch (Exception exp){
             exp.printStackTrace();
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        finish();
     }
 }
