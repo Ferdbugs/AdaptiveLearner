@@ -38,6 +38,11 @@ public class TopicSelection extends AppCompatActivity {
                         Communication.setText(Completed);
                         Communication.setEnabled(false);
                     }
+                    else{
+                        Intent intent = new Intent(getBaseContext(), Test.class);
+                        learner.setCurrentTopic(ComAndTrans);
+                        startActivity(intent);
+                    }
                 }
                 else {
                     Intent intent = new Intent(getBaseContext(), Test.class);
