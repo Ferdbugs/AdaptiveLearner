@@ -28,7 +28,8 @@ public class LectureSlides extends AppCompatActivity {
     String difficulty, topic, performance,learnerState,contentComplexity,beginner,intermediate,expert, complete;
     public Learner learner;
     TextView recommended,subject;
-    Button material,contn,homeScreen;
+    Button material,contn,homeScreen,google;
+    View.OnClickListener completeListener,listener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,14 +55,26 @@ public class LectureSlides extends AppCompatActivity {
 
         subject.setText(topic);
 
-        homeScreen.setOnClickListener(new View.OnClickListener() {
+        listener = new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent Home = new Intent(LectureSlides.this,MainActivity.class);
                 startActivity(Home);
                 finish();
             }
-        });
+        };
+
+        completeListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Uri uri = Uri.parse("https://docs.google.com/forms/d/e/1FAIpQLSfJkccs5jsR33DuppTypNBpUG5Iix-2CAC6SdHv2x2v0J9uhQ/viewform?usp=sf_link");
+                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(intent);
+                finish();
+            }
+        };
+
+        homeScreen.setOnClickListener(listener);
 
         contn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -109,11 +122,6 @@ public class LectureSlides extends AppCompatActivity {
     }
 
     void setContentComplexity(){
-        if(learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")){
-            recommended.setText(complete);
-            material.setEnabled(false);
-            contn.setEnabled(false);
-        }
         if(contentComplexity.equals("Low")){
             if(!recommended.getText().equals(complete)){
                 recommended.setText(beginner);
@@ -133,6 +141,18 @@ public class LectureSlides extends AppCompatActivity {
             }
             recommended.setText(expert);
             learner.setCurrentDifficulty("Hard");
+        }
+        if(learner.getCompleted().contains("A") && learner.getCompleted().contains("B") && learner.getCompleted().contains("C")){
+            homeScreen.setOnClickListener(completeListener);
+            recommended.setText(complete);
+            material.setEnabled(false);
+            String complete = "You've Completed the Course! Please take the final test:";
+            String finalTest = "Final Test";
+            homeScreen.setText(finalTest);
+            recommended.setText(complete);
+            material.setVisibility(View.INVISIBLE);
+            contn.setEnabled(false);
+            contn.setVisibility(View.INVISIBLE);
         }
     }
 

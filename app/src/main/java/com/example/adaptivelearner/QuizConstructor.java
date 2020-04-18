@@ -31,10 +31,10 @@ public class QuizConstructor {
         quiz.add(new QuizQuestions("Analog signals are propagated over?","twisted pair","coaxial cable","Wi-Fi","All of the Above","All of the Above","Medium"));
         quiz.add(new QuizQuestions("After a certain distance, analog signals will?","Attenuate","Strengthen","Widen","Accelerate","Attenuate","Medium"));
         quiz.add(new QuizQuestions("Positive Voltage Pulses and Negative Voltage pulses in a digital signal are represented by:","Alpha/Beta","Sigma/K","0/1","AC/DC","0/1","Medium"));
-        quiz.add(new QuizQuestions("Analog data can converted to digital using a ___","Codec","Hub","Modem","Encryptor","Codec","Medium"));
+        quiz.add(new QuizQuestions("Analog data can be converted to digital using a ___","Codec","Hub","Modem","Encryptor","Codec","Medium"));
         quiz.add(new QuizQuestions("Advantage of Digital Signals over Analog ?","Less Noise","Faster","Less Attenuation","Wider","Less Noise","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is determined using ?","Bit Interval/Rate","Strength","Attenuation","Frequency","Bit Interval/Rate","Medium"));
-        quiz.add(new QuizQuestions("Digital signal with a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6)","Medium"));
+        quiz.add(new QuizQuestions("If a digital signal has a bit interval of 90 microseconds, what is its bandwidth ?","1/(90*10^-6)","1/(60*10^-9)","1*(90*10^-9)","1*(90*10^-6)","1/(90*10^-6)","Medium"));
         quiz.add(new QuizQuestions("Digital bandwidth is typically expressed in?","Bits per Second","Lambda","Milliseconds","Bytes","Bits per Second","Medium"));
 
         return  quiz;
